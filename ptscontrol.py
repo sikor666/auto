@@ -47,6 +47,7 @@ import xmlrpc.client
 import pythoncom
 import ptsprojects.ptstypes as ptstypes
 import ctypes
+import json
 
 log = logging.debug
 
@@ -122,11 +123,14 @@ class PTSSender(win32com.server.connect.ConnectableServer):
     _reg_progid_ = "autopts.PTSSender"
     _public_methods_ = ['OnImplicitSend'] + win32com.server.connect.ConnectableServer._public_methods_
 
-    def __init__(self):
+    def __init__(self, client):
         """"Constructor"""
         super(PTSSender, self).__init__()
 
+        print("Constructor: ", self.__class__.__name__)
         self._callback = None
+        self._mqtt_client = client
+        self._mqtt_client.on_message = self.on_message
 
     def set_callback(self, callback):
         """Sets the callback"""
@@ -135,6 +139,17 @@ class PTSSender(win32com.server.connect.ConnectableServer):
     def unset_callback(self):
         """Unsets the callback"""
         self._callback = None
+
+    def on_message(self, client, userdata, message):
+        # time.sleep(1)
+        message = str(message.payload.decode("utf-8"))
+        print("message: ", message)
+        # parse message:
+        command = json.loads(message)
+        # the result is a Python dictionary:
+        print("status: ", command["parameters"]["status"])
+        # self.client.disconnect() #disconnect
+        # self.client.loop_stop() #stop loop
 
     def OnImplicitSend(self, project_name, wid, test_case, description, style):
         """Implements:
@@ -162,6 +177,14 @@ class PTSSender(win32com.server.connect.ConnectableServer):
         log("test_case_name: %s %s" % (test_case, type(test_case)))
         log("description: %s %s" % (description, type(description)))
         log("style: %s 0x%x", ptstypes.MMI_STYLE_STRING[style], style)
+
+        command = '{"command": "ImplicitSend", "parameters": {"projectName": "' + project_name + \
+                  '", "id": ' + str(wid) + ', "testCase": "' + test_case + \
+                  '", "description": "' + description + '", "style": ' + str(style) + \
+                  '}, "response_required": true}'
+
+        print(command)
+        self._mqtt_client.publish('user/test', command)
 
         rsp = ""
 
@@ -243,10 +266,11 @@ class PyPTS:
 
     """
 
-    def __init__(self):
+    def __init__(self, client):
         """Constructor"""
         log("%s", self.__init__.__name__)
 
+        self._mqtt_client = client
         self._init_attributes()
 
         # list of tuples of methods and arguments to recover after PTS restart
@@ -422,7 +446,7 @@ class PyPTS:
         log("Started new PTS daemon with pid: %d" % self._pts_proc.ProcessId)
 
         self._pts_logger = PTSLogger()
-        self._pts_sender = PTSSender()
+        self._pts_sender = PTSSender(self._mqtt_client)
 
         # cached frequently used PTS attributes: due to optimisation reasons it
         # is avoided to contact PTS. These attributes should not change anyway.

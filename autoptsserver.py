@@ -36,6 +36,7 @@ import xmlrpc.client
 import xmlrpc.server
 import winutils
 import ptscontrol
+import paho.mqtt.client as mqtt
 from config import SERVER_PORT
 
 log = logging.debug
@@ -49,7 +50,13 @@ class PyPTSWithXmlRpcCallback(ptscontrol.PyPTS):
 
         log("%s", self.__init__.__name__)
 
-        ptscontrol.PyPTS.__init__(self)
+        print("BluetoothTest")
+        self.client = mqtt.Client('BluetoothTest')
+        self.client.connect('192.168.1.103')
+        self.client.loop_start() #start loop to process received messages
+        self.client.subscribe("test/user") #subscribe
+
+        ptscontrol.PyPTS.__init__(self, self.client)
 
         # address of the auto-pts client that started it's own xmlrpc server to
         # receive callback messages
