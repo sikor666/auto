@@ -43,7 +43,6 @@ import shutil
 import win32com.client
 import win32com.server.connect
 import win32com.server.util
-import xmlrpc.client
 import pythoncom
 import ptsprojects.ptstypes as ptstypes
 import ctypes
@@ -131,7 +130,7 @@ class PTSSender(win32com.server.connect.ConnectableServer):
         self._callback = None
         self._mqtt_response = None
         self._mqtt_client = client
-        self._mqtt_client.on_message = self.on_message
+        self._mqtt_client.on_message = self.on_implicit_send_response
 
     def set_callback(self, callback):
         """Sets the callback"""
@@ -141,7 +140,7 @@ class PTSSender(win32com.server.connect.ConnectableServer):
         """Unsets the callback"""
         self._callback = None
 
-    def on_message(self, client, userdata, message):
+    def on_implicit_send_response(self, client, userdata, message):
         # time.sleep(1)
         message = str(message.payload.decode("utf-8"))
         print("message: ", message)
@@ -218,9 +217,6 @@ class PTSSender(win32com.server.connect.ConnectableServer):
                 time.sleep(1)
 
             log("callback returned on_implicit_send, respose: %r", self._mqtt_response)
-
-        except xmlrpc.client.Fault as err:
-            log("A fault occurred, code = %d, string = %s" % (err.faultCode, err.faultString))
 
         except Exception as e:
             log("Caught exception")
