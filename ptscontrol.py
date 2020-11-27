@@ -129,6 +129,7 @@ class PTSSender(win32com.server.connect.ConnectableServer):
 
         print("Constructor: ", self.__class__.__name__)
         self._callback = None
+        self._mqtt_response = None
         self._mqtt_client = client
         self._mqtt_client.on_message = self.on_message
 
@@ -147,9 +148,11 @@ class PTSSender(win32com.server.connect.ConnectableServer):
         # parse message:
         command = json.loads(message)
         # the result is a Python dictionary:
-        print("status: ", command["parameters"]["status"])
+        status = command["parameters"]["status"]
+        print("status: ", status)
         # self.client.disconnect() #disconnect
         # self.client.loop_stop() #stop loop
+        self._mqtt_response = status
 
     def OnImplicitSend(self, project_name, wid, test_case, description, style):
         """Implements:
@@ -197,41 +200,27 @@ class PTSSender(win32com.server.connect.ConnectableServer):
         # the result is a JSON string:
         print(message)
 
+        self._mqtt_response = None
         self._mqtt_client.publish('user/test', message)
 
-        rsp = ""
-
         try:
-            if self._callback is not None:
-                log("Calling callback.on_implicit_send")
-                rsp = self._callback.on_implicit_send(project_name, wid,
-                                                      test_case, description,
-                                                      style)
-                print("[0] on implicit send: ", rsp)
+            log("Calling callback.on_implicit_send")
 
-                # Don't block xml-rpc
-                if rsp == "WAIT":
-                    rsp = self._callback.get_pending_response(test_case)
-                    print("[1] get pending response: ", rsp)
+            while not self._mqtt_response:
+                # XXX: Ask for response every second
+                timer = timer + 1
+                # XXX: Timeout 90 seconds
+                if timer > 90:
+                    self._mqtt_response = "Cancel"
+                    break
 
-                    while not rsp:
-                        # XXX: Ask for response every second
-                        timer = timer + 1
-                        # XXX: Timeout 90 seconds
-                        if timer > 90:
-                            rsp = "Cancel"
-                            break
+                log("Rechecking response...")
+                time.sleep(1)
 
-                        log("Rechecking response...")
-                        time.sleep(1)
-                        rsp = self._callback.get_pending_response(test_case)
-                        print("[2] get pending response: ", rsp)
-
-                log("callback returned on_implicit_send, respose: %r", rsp)
+            log("callback returned on_implicit_send, respose: %r", self._mqtt_response)
 
         except xmlrpc.client.Fault as err:
-            log("A fault occurred, code = %d, string = %s" %
-                (err.faultCode, err.faultString))
+            log("A fault occurred, code = %d, string = %s" % (err.faultCode, err.faultString))
 
         except Exception as e:
             log("Caught exception")
@@ -239,21 +228,21 @@ class PTSSender(win32com.server.connect.ConnectableServer):
             # exit does not work, cause app is blocked in PTS.RunTestCase?
             sys.exit("Exception in OnImplicitSend")
 
-        if rsp:
+        if self._mqtt_response:
             is_present = 1
         else:
             is_present = 0
 
         # Stringify response
-        rsp = str(rsp)
-        rsp_len = str(len(rsp))
+        self._mqtt_response = str(self._mqtt_response)
+        rsp_len = str(len(self._mqtt_response))
         is_present = str(is_present)
 
         log("END OnImplicitSend:")
         log("*" * 20)
 
         return win32com.client.VARIANT(pythoncom.VT_ARRAY | pythoncom.VT_BSTR,
-                                       [rsp, rsp_len, is_present])
+                                       [self._mqtt_response, rsp_len, is_present])
 
 
 def parse_ptscontrol_error(err):
