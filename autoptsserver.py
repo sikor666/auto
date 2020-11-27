@@ -36,7 +36,6 @@ import xmlrpc.client
 import xmlrpc.server
 import winutils
 import ptscontrol
-import paho.mqtt.client as mqtt
 from config import SERVER_PORT
 
 log = logging.debug
@@ -47,7 +46,6 @@ class PyPTSWithXmlRpcCallback(ptscontrol.PyPTS):
 
     def __init__(self):
         """Constructor"""
-        print("Constructor PyPTSWithXmlRpcCallback")
 
         log("%s", self.__init__.__name__)
 
@@ -58,37 +56,6 @@ class PyPTSWithXmlRpcCallback(ptscontrol.PyPTS):
         self.client_address = None
         self.client_port = None
         self.client_xmlrpc_proxy = None
-
-        self.client = mqtt.Client('BluetoothTest')
-        self.client.on_message = self.on_message
-        self.client.connect('192.168.1.103')
-        self.client.loop_start() #start loop to process received messages
-        self.client.subscribe("test/user") #subscribe
-
-    def on_message(self, client, userdata, message):
-        # time.sleep(1)
-        print("received message =", str(message.payload.decode("utf-8")))
-        # self.client.disconnect() #disconnect
-        # self.client.loop_stop() #stop loop
-
-    def on_implicit_send(self, project_name, wid, test_case, description, style):
-        print("Callback: %s %d %s %s 0x%x" % (project_name, wid, test_case, description, style))
-        # self.client.publish('user/test', '{"command": "StartProvisioning", "parameters": ""}')
-        # command = '{"command": "StartProvisioning", "parameters": "", "response_required": true}'
-        command = '{"command": "ImplicitSend", "parameters": {"projectName": "' + project_name + \
-                  '", "id": ' + str(wid) + ', "testCase": "' + test_case + \
-                  '", "description": "' + description + '", "style": ' + str(style) + \
-                  '}, "response_required": true}'
-        self.client.publish('user/test', command)
-        return "WAIT"
-
-    def dupa(self):
-        ptscontrol.PyPTS.open_workspace(self, "C:\\Users\\blue\\Documents\\Profile Tuning Suite\\Maxwell\\Maxwell.pqw6")
-        ptscontrol.PyPTS.register_ptscallback(self, self.on_implicit_send)
-        ptscontrol.PyPTS.run_test_case(self, "PBAP", "PBAP/PCE/PBD/BV-01-C")
-        # ptscontrol.PyPTS.run_test_case(self, "PBAP", "PBAP/PCE/SSM/BV-02-C")
-        # ptscontrol.PyPTS.run_test_case(self, "PBAP", "PBAP/PCE/SSM/BV-06-C")
-        # ptscontrol.PyPTS.run_test_case(self, "PBAP", "IOPT/CL/PBAP-PCE/SFC/BV-22-I")
 
     def register_xmlrpc_ptscallback(self, client_address, client_port):
         """Registers client callback. xmlrpc proxy/client calls this method
@@ -150,12 +117,10 @@ def main():
 
     print("Serving on port {} ...".format(SERVER_PORT))
 
-    pts.dupa()
-
-    # server = xmlrpc.server.SimpleXMLRPCServer(("", SERVER_PORT), allow_none=True)
-    # server.register_instance(pts)
-    # server.register_introspection_functions()
-    # server.serve_forever()
+    server = xmlrpc.server.SimpleXMLRPCServer(("", SERVER_PORT), allow_none=True)
+    server.register_instance(pts)
+    server.register_introspection_functions()
+    server.serve_forever()
 
 
 if __name__ == "__main__":

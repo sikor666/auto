@@ -67,7 +67,6 @@ class PTSLogger(win32com.server.connect.ConnectableServer):
 
     def __init__(self):
         """"Constructor"""
-        print("Constructor PTSLogger")
         super(PTSLogger, self).__init__()
 
         self._callback = None
@@ -76,22 +75,18 @@ class PTSLogger(win32com.server.connect.ConnectableServer):
 
     def set_callback(self, callback):
         """Set the callback"""
-        print("Set the callback")
         self._callback = callback
 
     def unset_callback(self):
         """Unset the callback"""
-        print("Unset the callback")
         self._callback = None
 
     def enable_maximum_logging(self, enable):
         """Enable/disable maximum logging"""
-        print("Enable/disable maximum logging")
         self._maximum_logging = enable
 
     def set_test_case_name(self, test_case_name):
         """Required to identify multiple instances on client side"""
-        print("Required to identify multiple instances on client side")
         self._test_case_name = test_case_name
 
     def Log(self, log_type, logtype_string, log_time, log_message):
@@ -110,13 +105,14 @@ class PTSLogger(win32com.server.connect.ConnectableServer):
 
         log("%d %s %s %s" % (log_type, logtype_string, log_time, log_message))
 
-        # try:
-        #     if self._callback is not None:
-        #         if self._maximum_logging or log_type in logtype_whitelist:
-        #             self._callback.log(log_type, logtype_string, log_time, log_message, self._test_case_name)
-        # except Exception as e:
-        #     logging.exception(repr(e))
-        #     sys.exit("Exception in Log")
+        try:
+            if self._callback is not None:
+                if self._maximum_logging or log_type in logtype_whitelist:
+                    self._callback.log(log_type, logtype_string, log_time,
+                                       log_message, self._test_case_name)
+        except Exception as e:
+            logging.exception(repr(e))
+            sys.exit("Exception in Log")
 
 
 class PTSSender(win32com.server.connect.ConnectableServer):
@@ -128,19 +124,16 @@ class PTSSender(win32com.server.connect.ConnectableServer):
 
     def __init__(self):
         """"Constructor"""
-        print("Constructor PTSSender")
         super(PTSSender, self).__init__()
 
         self._callback = None
 
     def set_callback(self, callback):
         """Sets the callback"""
-        print("Sets the callback")
         self._callback = callback
 
     def unset_callback(self):
         """Unsets the callback"""
-        print("Unsets the callback")
         self._callback = None
 
     def OnImplicitSend(self, project_name, wid, test_case, description, style):
@@ -154,7 +147,6 @@ class PTSSender(win32com.server.connect.ConnectableServer):
                         [in] unsigned long style);
         };
         """
-        print("OnImplicitSend")
         logger = logging.getLogger(self.__class__.__name__)
         log = logger.info
         timer = 0
@@ -176,29 +168,25 @@ class PTSSender(win32com.server.connect.ConnectableServer):
         try:
             if self._callback is not None:
                 log("Calling callback.on_implicit_send")
-                # rsp = self._callback.on_implicit_send(project_name, wid,
-                #                                       test_case, description,
-                #                                       style)
-
-                rsp = self._callback(project_name, wid, test_case, description, style)
-
-                print("Response: ", rsp)
+                rsp = self._callback.on_implicit_send(project_name, wid,
+                                                      test_case, description,
+                                                      style)
 
                 # Don't block xml-rpc
                 if rsp == "WAIT":
-                    # rsp = self._callback.get_pending_response(test_case)
+                    rsp = self._callback.get_pending_response(
+                        test_case)
                     while not rsp:
                         # XXX: Ask for response every second
                         timer = timer + 1
                         # XXX: Timeout 90 seconds
                         if timer > 90:
-                            # rsp = "Cancel"
-                            rsp = "Ok"
+                            rsp = "Cancel"
                             break
 
                         log("Rechecking response...")
                         time.sleep(1)
-                        # rsp = self._callback.get_pending_response(test_case)
+                        rsp = self._callback.get_pending_response(test_case)
 
                 log("callback returned on_implicit_send, respose: %r", rsp)
 
@@ -232,7 +220,6 @@ class PTSSender(win32com.server.connect.ConnectableServer):
 def parse_ptscontrol_error(err):
     try:
         _, source, description, _, _, hresult = err.excepinfo
-        print("parse_ptscontrol_error")
 
         ptscontrol_e = ctypes.c_uint32(hresult).value
         ptscontrol_e_string = ptstypes.PTSCONTROL_E_STRING[ptscontrol_e]
@@ -258,7 +245,6 @@ class PyPTS:
 
     def __init__(self):
         """Constructor"""
-        print("Constructor PyPTS")
         log("%s", self.__init__.__name__)
 
         self._init_attributes()
@@ -282,7 +268,6 @@ class PyPTS:
 
     def _init_attributes(self):
         """Initializes class attributes"""
-        print("Initializes class attributes")
         log("%s", self._init_attributes.__name__)
 
         self._pts = None
@@ -301,7 +286,6 @@ class PyPTS:
 
     def add_recov(self, func, *args, **kwds):
         """Add function to recovery list"""
-        print("Add function to recovery list")
         if self._recov_in_progress:
             return
 
@@ -329,14 +313,12 @@ class PyPTS:
 
     def _add_temp_change(self, func, *args, **kwds):
         """Add function to set temporary value"""
-        print("Add function to set temporary value")
         if not self._recov_in_progress:
             log("%s %r %r %r", self._add_temp_change.__name__, func, args, kwds)
             self._temp_changes.append((func, args, kwds))
 
     def del_recov(self, func, *args, **kwds):
         """Remove function from recovery list"""
-        print("Remove function from recovery list")
         log("%s %r %r %r", self.del_recov.__name__, func, args, kwds)
 
         recov_funcs = [item[0] for item in self._recov]
@@ -356,8 +338,6 @@ class PyPTS:
 
     def _recover_item(self, item):
         """Recovery item wraper"""
-
-        print("Recovery item wraper")
 
         func = item[0]
         args = item[1]
@@ -383,8 +363,6 @@ class PyPTS:
 
         """
 
-        print("Recovers PTS from errors occured during RunTestCase call.")
-
         log("%s", self.recover_pts.__name__)
         log("recov=%s", self._recov)
 
@@ -404,8 +382,6 @@ class PyPTS:
 
         """
 
-        print("Restarts PTS")
-
         log("%s", self.restart_pts.__name__)
 
         # Startup of ptscontrol doesn't have PTS pid yet set - no pts running
@@ -418,8 +394,6 @@ class PyPTS:
         """Starts PTS
 
         This function will block for couple of seconds while PTS starts"""
-
-        print("Starts PTS")
 
         log("%s", self.start_pts.__name__)
 
@@ -468,7 +442,6 @@ class PyPTS:
 
     def stop_pts(self):
         """Stops PTS"""
-        print("Stops PTS")
 
         try:
             log("About to stop PTS with pid: %d", self._pts_proc.ProcessId)
@@ -483,7 +456,6 @@ class PyPTS:
     def create_workspace(self, bd_addr, pts_file_path, workspace_name,
                          workspace_path):
         """Creates a new workspace"""
-        print("Creates a new workspace")
 
         log("%s %s %s %s %s", self.create_workspace.__name__, bd_addr,
             pts_file_path, workspace_name, workspace_path)
@@ -494,7 +466,6 @@ class PyPTS:
     @staticmethod
     def _get_own_workspaces():
         """Get auto-pts own workspaces"""
-        print("Get auto-pts own workspaces")
         script_path = os.path.split(os.path.realpath(__file__))[0]
         workspaces = {}
 
@@ -509,7 +480,6 @@ class PyPTS:
 
     def open_workspace(self, workspace_path):
         """Opens existing workspace"""
-        print("Opens existing workspace: ", workspace_path)
 
         log("%s %s", self.open_workspace.__name__, workspace_path)
 
@@ -552,7 +522,6 @@ class PyPTS:
 
     def _cache_test_cases(self):
         """Cache test cases"""
-        print("Cache test cases")
         self._pts_projects.clear()
 
         for i in range(0, self._pts.GetProjectCount()):
@@ -566,19 +535,16 @@ class PyPTS:
 
     def get_project_list(self):
         """Returns list of projects available in the current workspace"""
-        print("Returns list of projects available in the current workspace")
 
         return tuple(self._pts_projects.keys())
 
     def get_project_version(self, project_name):
         """Returns project version"""
-        print("Returns project version")
 
         return self._pts.GetProjectVersion(project_name)
 
     def get_test_case_list(self, project_name):
         """Returns list of active test cases of the specified project"""
-        print("Returns list of active test cases of the specified project")
 
         test_case_list = []
 
@@ -590,7 +556,6 @@ class PyPTS:
 
     def get_test_case_description(self, project_name, test_case_name):
         """Returns description of the specified test case"""
-        print("Returns description of the specified test case")
 
         test_case_index = self._pts_projects[project_name][test_case_name]
 
@@ -598,7 +563,6 @@ class PyPTS:
 
     def _revert_temp_changes(self):
         """Recovery default state for test case"""
-        print("Recovery default state for test case")
 
         if not self._temp_changes:
             return
@@ -633,7 +597,6 @@ class PyPTS:
         If an error occurs when running test case returns code of an error as a
         string, otherwise returns an empty string
         """
-        print("Executes the specified Test Case.")
 
         log("Starting %s %s %s", self.run_test_case.__name__, project_name,
             test_case_name)
@@ -660,7 +623,6 @@ class PyPTS:
     def stop_test_case(self, project_name, test_case_name):
         """NOTE: According to documentation 'StopTestCase() is not currently
         implemented'"""
-        print("StopTestCase")
 
         log("%s %s %s", self.is_active_test_case.__name__, project_name,
             test_case_name)
@@ -668,14 +630,13 @@ class PyPTS:
         self._pts.StopTestCase(project_name, test_case_name)
 
     def get_test_case_count_from_tss_file(self, project_name):
-        """Returns the number of test cases that are available in the specified project according to TSS file."""
-        print("Returns the number of test cases that are available in the specified project according to TSS file.")
+        """Returns the number of test cases that are available in the specified
+        project according to TSS file."""
 
         return self._pts.GetTestCaseCountFromTSSFile(project_name)
 
     def get_test_cases_from_tss_file(self, project_name):
         """Returns array of test case names according to TSS file."""
-        print("Returns array of test case names according to TSS file.")
 
         return self._pts.GetTestCasesFromTSSFile(project_name)
 
@@ -694,7 +655,6 @@ class PyPTS:
         PTSCONTROL_E_PICS_ENTRY_NOT_CHANGED (0x849C0032)
 
         """
-        print("Set PICS")
         log("%s %s %s %s", self.set_pics.__name__, project_name,
             entry_name, bool_value)
 
@@ -721,7 +681,6 @@ class PyPTS:
         PTSCONTROL_E_PIXIT_PARAM_NOT_CHANGED (0x849C0021)
 
         """
-        print("Set PIXIT")
         log("%s %s %s %s", self.set_pixit.__name__, project_name,
             param_name, param_value)
 
@@ -746,7 +705,6 @@ class PyPTS:
         PTSCONTROL_E_PIXIT_PARAM_NOT_CHANGED (0x849C0021)
 
         """
-        print("Updates PIXIT")
         log("%s %s %s %s", self.update_pixit_param.__name__, project_name,
             param_name, new_param_value)
 
@@ -761,15 +719,14 @@ class PyPTS:
 
     def enable_maximum_logging(self, enable):
         """Enables/disables the maximum logging."""
-        print("Enables/disables the maximum logging.")
 
         log("%s %s", self.enable_maximum_logging.__name__, enable)
         self._pts.EnableMaximumLogging(enable)
         self._pts_logger.enable_maximum_logging(enable)
 
     def set_call_timeout(self, timeout):
-        """Sets a timeout period in milliseconds for the RunTestCase() calls to PTS."""
-        print("Sets a timeout period in milliseconds for the RunTestCase() calls to PTS.")
+        """Sets a timeout period in milliseconds for the RunTestCase() calls
+        to PTS."""
 
         self._pts.SetPTSCallTimeout(timeout)
 
@@ -786,21 +743,16 @@ class PyPTS:
 
         """
 
-        print("save_test_history_log")
-
         log("%s %s", self.save_test_history_log.__name__, save)
         self._pts.SaveTestHistoryLog(save)
 
     def get_bluetooth_address(self):
         """Returns PTS bluetooth address string"""
-        print("Returns PTS bluetooth address string")
 
         return self._pts.GetPTSBluetoothAddress()
 
     def bd_addr(self):
         """Returns PTS Bluetooth address as a colon separated string"""
-        print("Returns PTS Bluetooth address as a colon separated string")
-
         # use cached address if available
         if not self.__bd_addr:
             a = self.get_bluetooth_address().upper()
@@ -810,13 +762,12 @@ class PyPTS:
 
     def get_version(self):
         """Returns PTS version"""
-        print("Returns PTS version")
 
         return self._pts.GetPTSVersion()
 
     def register_ptscallback(self, callback):
-        """Registers testcase.PTSCallback instance to be used as PTS log and implicit send callback"""
-        print("Registers testcase.PTSCallback instance to be used as PTS log and implicit send callback")
+        """Registers testcase.PTSCallback instance to be used as PTS log and
+        implicit send callback"""
 
         log("%s %s", self.register_ptscallback.__name__, callback)
 
@@ -827,7 +778,6 @@ class PyPTS:
 
     def unregister_ptscallback(self):
         """Unregisters the testcase.PTSCallback callback"""
-        print("Unregisters the testcase.PTSCallback callback")
 
         log("%s", self.unregister_ptscallback.__name__)
 
@@ -839,7 +789,6 @@ class PyPTS:
 
 def parse_args():
     """Parses command line arguments and options"""
-    print("Parses command line arguments and options")
 
     arg_parser = argparse.ArgumentParser(
         description="PTS Control")
@@ -861,8 +810,6 @@ def main():
 
     script_name = os.path.basename(sys.argv[0])  # in case it is full path
     script_name_no_ext = os.path.splitext(script_name)[0]
-
-    print("Rudimentary testing: ", script_name)
 
     log_filename = "%s.log" % (script_name_no_ext,)
     logging.basicConfig(format='%(name)s [%(asctime)s] %(message)s',
