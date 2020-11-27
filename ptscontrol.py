@@ -178,13 +178,26 @@ class PTSSender(win32com.server.connect.ConnectableServer):
         log("description: %s %s" % (description, type(description)))
         log("style: %s 0x%x", ptstypes.MMI_STYLE_STRING[style], style)
 
-        command = '{"command": "ImplicitSend", "parameters": {"projectName": "' + project_name + \
-                  '", "id": ' + str(wid) + ', "testCase": "' + test_case + \
-                  '", "description": "' + description + '", "style": ' + str(style) + \
-                  '}, "response_required": true}'
+        # a Python object (dict):
+        command = {
+            "command": "ImplicitSend",
+            "parameters": {
+                "projectName": project_name,
+                "id": wid,
+                "testCase": test_case,
+                "description": description,
+                "style": style,
+            },
+            "response_required": "true"
+        }
 
-        print(command)
-        self._mqtt_client.publish('user/test', command)
+        # convert into JSON:
+        message = json.dumps(command)
+
+        # the result is a JSON string:
+        print(message)
+
+        self._mqtt_client.publish('user/test', message)
 
         rsp = ""
 
@@ -194,11 +207,13 @@ class PTSSender(win32com.server.connect.ConnectableServer):
                 rsp = self._callback.on_implicit_send(project_name, wid,
                                                       test_case, description,
                                                       style)
+                print("[0] on implicit send: ", rsp)
 
                 # Don't block xml-rpc
                 if rsp == "WAIT":
-                    rsp = self._callback.get_pending_response(
-                        test_case)
+                    rsp = self._callback.get_pending_response(test_case)
+                    print("[1] get pending response: ", rsp)
+
                     while not rsp:
                         # XXX: Ask for response every second
                         timer = timer + 1
@@ -210,6 +225,7 @@ class PTSSender(win32com.server.connect.ConnectableServer):
                         log("Rechecking response...")
                         time.sleep(1)
                         rsp = self._callback.get_pending_response(test_case)
+                        print("[2] get pending response: ", rsp)
 
                 log("callback returned on_implicit_send, respose: %r", rsp)
 
