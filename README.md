@@ -28,7 +28,7 @@ The command below starts tester on Maxwell/Fusion:
 
     ./tester --host=[IP address of the windows server with the PTS testing equipment (Dongle)]
 
-The command below starts AutoPTS server on Windows:
+The command below starts auto PTS server on Windows:
 
     python.exe autoptsserver.py
 
@@ -36,7 +36,7 @@ The command below starts AutoPTS server on Windows:
 
 ```bash
 # PTS Workspace on Windows: "C:\Users\bluetooth\Documents\Profile Tuning Suite\Maxwell\Maxwell.pqw6"
-# AutoPTS Server IP: 192.168.1.103
+# Auto PTS Server IP: 192.168.1.103
 # Local IP Address:  192.168.1.104
 
 # Run all PBAP test cases from remote Linux host.
