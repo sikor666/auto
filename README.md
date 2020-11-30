@@ -2,7 +2,7 @@
 
 The Bluetooth Profile Tuning Suite (PTS) is a Bluetooth testing tool provided by Bluetooth SIG. The PTS is a Windows program that is normally used in manual mode via its GUI.
 
-This is the Bluetooth PTS automation framework. Script autoptsserver.py uses PTSControl COM API of PTS to automate testing.
+This is the Bluetooth PTS automation framework. Script ```autoptsserver.py``` uses PTSControl COM API of PTS to automate testing.
 
 # Linux Prerequisites
 
@@ -16,6 +16,8 @@ This is the Bluetooth PTS automation framework. Script autoptsserver.py uses PTS
 
 The bluetooth auto PTS framework uses a client server architecture.
 With this setup the PTS automation server runs on Windows and the client runs on GNU/Linux.
+
+To be able to run PTS in automation mode, there should be no PTS instances running in the GUI mode. Hence, before running ```autoptsserver.py``` scripts close the PTS GUI.
 
 The bluetooth auto PTS server requires the MQTT message broker to be running to communicate
 with the tester application installed on Maxwell/Fusion. The easiest way is to run it on Windows Subsystem for Linux (WSL) using a command:
@@ -33,10 +35,13 @@ The command below starts AutoPTS server on Windows:
 **Testing bluetooth service on Maxwell from remote Linux host**
 
 ```bash
-# Run all PBAP test cases from remote Linux host.
 # PTS Workspace on Windows: "C:\Users\bluetooth\Documents\Profile Tuning Suite\Maxwell\Maxwell.pqw6"
 # AutoPTS Server IP: 192.168.1.103
 # Local IP Address:  192.168.1.104
 
+# Run all PBAP test cases from remote Linux host.
 ./autoptsclient-maxwell.py "C:\Users\bluetooth\Documents\Profile Tuning Suite\Maxwell\Maxwell.pqw6" -i 192.168.1.103 -l 192.168.1.104 -c PBAP
+
+# Run PBAP/PCE/SSM/BV-02-C test case from remote Linux host.
+./autoptsclient-maxwell.py "C:\Users\bluetooth\Documents\Profile Tuning Suite\Maxwell\Maxwell.pqw6" -i 192.168.1.103 -l 192.168.1.104 -c PBAP/PCE/SSM/BV-02-C
 ```

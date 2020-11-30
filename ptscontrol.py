@@ -854,12 +854,6 @@ def main():
         for test_case in test_cases:
             print(test_case)
 
-    pts.update_pixit_param("L2CAP", "TSPX_iut_role_initiator", "FALSE")
-    pts.update_pixit_param("L2CAP", "TSPX_iut_role_initiator", "TRUE")
-
-    pts.set_pics("L2CAP", "TSPC_L2CAP_3_13", True)
-    pts.set_pics("L2CAP", "TSPC_L2CAP_3_13", False)
-
     pts.enable_maximum_logging(True)
     pts.enable_maximum_logging(False)
 
