@@ -31,5 +31,6 @@ The command below starts AutoPTS server on Windows:
 # PTS Workspace on Windows: "C:\Users\bluetooth\Documents\Profile Tuning Suite\Maxwell\Maxwell.pqw6"
 # AutoPTS Server IP: 192.168.1.103
 # Local IP Address:  192.168.1.104
+
 ./autoptsclient-maxwell.py "C:\Users\bluetooth\Documents\Profile Tuning Suite\Maxwell\Maxwell.pqw6" -i 192.168.1.103 -l 192.168.1.104 -c PBAP
 ```
