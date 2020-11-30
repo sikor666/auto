@@ -34,56 +34,11 @@ RUNNING_TEST_CASE = {}
 AUTO_PTS_LOCAL = "AUTO_PTS_LOCAL" in os.environ
 
 
-class _Method:
-    # some magic to bind an XML-RPC method to an RPC server.
-    # supports "nested" methods (e.g. examples.getStateName)
-    def __init__(self, send, name):
-        self.__send = send
-        self.__name = name
-
-    def __getattr__(self, name):
-        return _Method(self.__send, "%s.%s" % (self.__name, name))
-
-    def __call__(self, *args):
-        return self.__send(self.__name, args)
-
-    def __repr__(self):
-        return "<%s.%s %s %s>" % (self.__class__.__module__,
-                                  self.__class__.__name__,
-                                  self.__name, self.__send)
-    __str__ = __repr__
-
-
-xmlrpc.client._Method = _Method
-
-
 class ClientCallback(PTSCallback):
     def __init__(self):
-        self.exception = queue.Queue()
+        pass
 
-    def error_code(self):
-        """Return error code or None if there are no errors
-
-        Used by the main thread to get the errors happened in the callback
-        thread
-
-        """
-
-        error_code = None
-
-        try:
-            exc = self.exception.get_nowait()
-        except queue.Empty:
-            pass
-        else:
-            error_code = get_error_code(exc)
-            log("Error %r from the callback thread", error_code)
-            self.exception.task_done()
-
-        return error_code
-
-    def log(self, log_type, logtype_string, log_time, log_message,
-            test_case_name):
+    def log(self, log_type, logtype_string, log_time, log_message, test_case_name):
         """Implements:
 
         interface IPTSControlClientLogger : IUnknown {
@@ -113,7 +68,6 @@ class ClientCallback(PTSCallback):
 
         except Exception as e:
             logging.exception("Log caught exception")
-            self.exception.put(sys.exc_info()[1])
 
             # exit does not work, cause app is blocked in PTS.RunTestCase?
             sys.exit("Exception in Log")
