@@ -107,15 +107,3 @@ class TestCase(PTSCallback):
         if new_status:
             self.status = new_status
             log("New status %s - %s", str(self), new_status)
-
-
-class TestCaseLT1(TestCase):
-    def copy(self):
-        """Copy constructor"""
-
-        test_case = super(TestCaseLT1, self).copy()
-
-        return test_case
-
-    def __init__(self, *args, **kwargs):
-        super(TestCaseLT1, self).__init__(*args, **kwargs)

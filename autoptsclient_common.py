@@ -16,7 +16,7 @@ import datetime
 import argparse
 from termcolor import colored
 
-from ptsprojects.testcase import PTSCallback, TestCaseLT1
+from ptsprojects.testcase import PTSCallback
 import ptsprojects.ptstypes as ptstypes
 from config import SERVER_PORT, CLIENT_PORT
 
@@ -478,13 +478,13 @@ def run_test_case_thread_entry(pts, test_case):
 
 @run_test_case_wrapper
 def run_test_case(ptses, test_case_instances, test_case_name, stats, session_log_dir):
-    def test_case_lookup_name(name, test_case_class):
-        """Return 'test_case_class' instance if found or None otherwise"""
+    def test_case_lookup_name(name):
+        """Return test case class instance if found or None otherwise"""
         if test_case_instances is None:
             return None
 
         for tc in test_case_instances:
-            if tc.name == name and isinstance(tc, test_case_class):
+            if tc.name == name:
                 return tc
 
         return None
@@ -496,20 +496,20 @@ def run_test_case(ptses, test_case_instances, test_case_name, stats, session_log
     formatter = logging.Formatter(format)
 
     # Lookup TestCase class instance
-    test_case_lt1 = test_case_lookup_name(test_case_name, TestCaseLT1)
-    if test_case_lt1 is None:
+    test_case = test_case_lookup_name(test_case_name)
+    if test_case is None:
         # FIXME
         return 'NOT_IMPLEMENTED'
 
-    test_case_lt1.reset()
-    test_case_lt1.initialize_logging(session_log_dir)
-    file_handler = logging.FileHandler(test_case_lt1.log_filename)
+    test_case.reset()
+    test_case.initialize_logging(session_log_dir)
+    file_handler = logging.FileHandler(test_case.log_filename)
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
     while True:
         # Multiple PTS instances test cases may fill status already
-        if test_case_lt1.status != 'init':
+        if test_case.status != 'init':
             continue
 
         # Multi-instance related stuff
@@ -517,9 +517,14 @@ def run_test_case(ptses, test_case_instances, test_case_name, stats, session_log
 
         pts_thread = threading.Thread(
             target=run_test_case_thread_entry,
-            args=(ptses[0], test_case_lt1))
+            args=(ptses[0], test_case))
         pts_threads.append(pts_thread)
         pts_thread.start()
+
+        # If we want to run tests on multiple PTS instances
+        # we can create multiple threads here, but this feature
+        # require implementation multiple classes that inherit
+        # from the TestCase class
 
         # Wait till every PTS instance finish executing test case
         for pts_thread in pts_threads:
@@ -527,7 +532,7 @@ def run_test_case(ptses, test_case_instances, test_case_name, stats, session_log
 
         logger.removeHandler(file_handler)
 
-        return test_case_lt1.status
+        return test_case.status
 
 
 test_case_blacklist = [

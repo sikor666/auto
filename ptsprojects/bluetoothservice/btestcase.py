@@ -1,8 +1,8 @@
 """Test case that manages bluetooth service IUT"""
 
-from ptsprojects.testcase import TestCaseLT1
+from ptsprojects.testcase import TestCase
 
-class BTestCase(TestCaseLT1):
+class BTestCase(TestCase):
     """Bluetooth service test case class"""
 
     def __init__(self, *args, **kwargs):
