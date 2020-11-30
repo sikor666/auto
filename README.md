@@ -1,3 +1,9 @@
+# Introduction
+
+The Bluetooth Profile Tuning Suite (PTS) is a Bluetooth testing tool provided by Bluetooth SIG. The PTS is a Windows program that is normally used in manual mode via its GUI.
+
+This is the Bluetooth PTS automation framework. Script autoptsserver.py uses PTSControl COM API of PTS to automate testing.
+
 # Linux
 
     python3 -m pip install --user -r autoptsclient_requirements.txt
@@ -24,7 +30,7 @@ The command below starts AutoPTS server on Windows:
 
     python.exe autoptsserver.py
 
-**Testing bluetooth service on Maxwell/Fusion from remote Linux host**
+**Testing bluetooth service on Maxwell from remote Linux host**
 
 ```bash
 # Run all PBAP test cases from remote Linux host.
