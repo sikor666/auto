@@ -27,12 +27,6 @@ log = logging.debug
 
 RUNNING_TEST_CASE = {}
 
-# To test autopts client locally:
-# Envrinment variable AUTO_PTS_LOCAL must be set for FakeProxy to
-# be used. When FakeProxy is used autoptsserver on Windows will
-# not be contacted.
-AUTO_PTS_LOCAL = "AUTO_PTS_LOCAL" in os.environ
-
 
 class ClientCallback(PTSCallback):
     def __init__(self):
@@ -128,48 +122,6 @@ def init_logging():
                         filemode='w',
                         level=logging.DEBUG)
 
-class FakeProxy(object):
-    """Fake PTS XML-RPC proxy client.
-
-    Usefull when testing code locally and auto-pts server is not needed"""
-
-    class System(object):
-        def listMethods(self):
-            pass
-
-    def __init__(self):
-        self.system = FakeProxy.System()
-
-    def restart_pts(self):
-        pass
-
-    def set_call_timeout(self, timeout):
-        pass
-
-    def get_version(self):
-        return 0x65
-
-    def bd_addr(self):
-        return "00:01:02:03:04:05"
-
-    def register_xmlrpc_ptscallback(self, client_address, client_port):
-        pass
-
-    def unregister_xmlrpc_ptscallback(self):
-        pass
-
-    def open_workspace(self, workspace_path):
-        pass
-
-    def enable_maximum_logging(self, enable):
-        pass
-
-    def update_pixit_param(self, project_name, param_name, new_param_value):
-        pass
-
-    def run_test_case(self, project_name, test_case_name):
-        pass
-
 
 def init_pts_thread_entry(proxy, local_address, local_port, workspace_path, 
                           bd_addr, enable_max_logs):
@@ -222,12 +174,9 @@ def init_pts(args):
     local_port = CLIENT_PORT
 
     for server_addr, local_addr in zip(args.ip_addr, args.local_addr):
-        if AUTO_PTS_LOCAL:
-            proxy = FakeProxy()
-        else:
-            proxy = xmlrpc.client.ServerProxy(
-                "http://{}:{}/".format(server_addr, SERVER_PORT),
-                allow_none=True,)
+        proxy = xmlrpc.client.ServerProxy(
+            "http://{}:{}/".format(server_addr, SERVER_PORT),
+            allow_none=True,)
 
         print("(%r) Starting PTS %s ..." % (id(proxy), server_addr))
 
@@ -434,19 +383,8 @@ def get_error_code(exc):
 
 
 def run_test_case_thread_entry(pts, test_case):
-    """Runs the test case specified by a TestCase instance.
-
-    [1] xmlrpclib.Fault normally happens due to unhandled exception in the
-        autoptsserver on Windows
-
-    """
-    log("Starting TestCase %s %s", run_test_case_thread_entry.__name__,
-        test_case)
-
-    if AUTO_PTS_LOCAL:  # set fake status and return
-        statuses = ["PASS", "INCONC", "FAIL", "UNKNOWN VERDICT: NONE", "XML-RPC ERROR"]
-        test_case.status = random.choice(statuses)
-        return
+    """Runs the test case specified by a TestCase instance"""
+    log("Starting TestCase %s %s", run_test_case_thread_entry.__name__, test_case)
 
     error_code = None
 
