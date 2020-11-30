@@ -473,20 +473,10 @@ def run_test_case(ptses, test_case_instances, test_case_name, stats, session_log
         return test_case.status
 
 
-test_case_blacklist = [
-    "_HELPER",
-    "TWO_NODES_PROVISIONER",
-]
-
-
 def run_test_cases(ptses, test_case_instances, args):
     """Runs a list of test cases"""
 
     def run_or_not(test_case_name):
-        for entry in test_case_blacklist:
-            if entry in test_case_name:
-                return False
-
         if args.excluded:
             for n in args.excluded:
                 if test_case_name.startswith(n):

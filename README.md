@@ -39,11 +39,18 @@ The command below starts auto PTS server on Windows:
 # Auto PTS Server IP: 192.168.1.103
 # Local IP Address:  192.168.1.104
 
+# Show help message and exit
+./autoptsclient-maxwell.py --help
+
 # Run all PBAP test cases from remote Linux host.
 ./autoptsclient-maxwell.py "C:\Users\bluetooth\Documents\Profile Tuning Suite\Maxwell\Maxwell.pqw6" \
 -i 192.168.1.103 -l 192.168.1.104 -c PBAP
 
-# Run PBAP/PCE/SSM/BV-02-C test case from remote Linux host.
+# Run PBAP/PCE/SSM/BV-02-C test case from remote Linux host with enable the PTS maximum logging.
 ./autoptsclient-maxwell.py "C:\Users\bluetooth\Documents\Profile Tuning Suite\Maxwell\Maxwell.pqw6" \
--i 192.168.1.103 -l 192.168.1.104 -c PBAP/PCE/SSM/BV-02-C
+-i 192.168.1.103 -l 192.168.1.104 -c PBAP/PCE/SSM/BV-02-C -d
+
+# Run PBAP test cases from remote Linux host without excluded list
+./autoptsclient-maxwell.py "C:\Users\bluetooth\Documents\Profile Tuning Suite\Maxwell\Maxwell.pqw6" \
+-i 192.168.1.103 -l 192.168.1.104 -c PBAP -e PBAP/PCE/PBD/BV-01-C PBAP/PCE/PBF/BV-02-I
 ```
