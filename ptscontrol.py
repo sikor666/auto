@@ -481,7 +481,7 @@ class PyPTS:
         # auto-pts own workspaces
         autopts_workspaces = self._get_own_workspaces()
 
-        if workspace_path in autopts_workspaces.keys():
+        if workspace_path in list(autopts_workspaces.keys()):
             workspace_name = workspace_path
             workspace_path = autopts_workspaces[workspace_path]
             log("Using %s workspace: %s", workspace_name, workspace_path)
@@ -543,7 +543,7 @@ class PyPTS:
 
         test_case_list = []
 
-        for test_case_name in self._pts_projects[project_name].keys():
+        for test_case_name in list(self._pts_projects[project_name].keys()):
             if self._pts.IsActiveTestCase(project_name, test_case_name):
                 test_case_list.append(test_case_name)
 
@@ -870,9 +870,9 @@ def main():
     pts.save_test_history_log(True)
     pts.save_test_history_log(False)
 
-    print("PTS Bluetooth Address: %x" % pts.get_bluetooth_address())
-    print("PTS BD_ADDR:", pts.bd_addr())
-    print("PTS Version:" % pts.get_version())
+    print("PTS Bluetooth Address: ", pts.get_bluetooth_address())
+    print("PTS BD_ADDR: ", pts.bd_addr())
+    print("PTS Version: ", pts.get_version())
 
 
 if __name__ == "__main__":
