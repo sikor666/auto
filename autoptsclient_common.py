@@ -16,7 +16,7 @@ import datetime
 import argparse
 from termcolor import colored
 
-from ptsprojects.testcase import PTSCallback, TestCaseLT1, TestCaseLT2
+from ptsprojects.testcase import PTSCallback, TestCaseLT1
 import ptsprojects.ptstypes as ptstypes
 from config import SERVER_PORT, CLIENT_PORT
 
@@ -507,18 +507,6 @@ def run_test_case(ptses, test_case_instances, test_case_name, stats, session_log
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
-    if test_case_lt1.name_lt2:
-        if len(ptses) < 2:
-            return 'LT2_NOT_AVAILABLE'
-
-        test_case_lt2 = test_case_lookup_name(test_case_lt1.name_lt2,
-                                              TestCaseLT2)
-        if test_case_lt2 is None:
-            # FIXME
-            return 'NOT_IMPLEMENTED'
-    else:
-        test_case_lt2 = None
-
     while True:
         # Multiple PTS instances test cases may fill status already
         if test_case_lt1.status != 'init':
@@ -533,29 +521,17 @@ def run_test_case(ptses, test_case_instances, test_case_name, stats, session_log
         pts_threads.append(pts_thread)
         pts_thread.start()
 
-        if test_case_lt2:
-            pts_thread = threading.Thread(
-                target=run_test_case_thread_entry,
-                args=(ptses[1], test_case_lt2))
-            pts_threads.append(pts_thread)
-            pts_thread.start()
-
         # Wait till every PTS instance finish executing test case
         for pts_thread in pts_threads:
             pts_thread.join()
 
         logger.removeHandler(file_handler)
 
-        if test_case_lt2 and test_case_lt2.status != "PASS" \
-                and test_case_lt1.status == "PASS":
-            return test_case_lt2.status
-
         return test_case_lt1.status
 
 
 test_case_blacklist = [
     "_HELPER",
-    "-LT2",
     "TWO_NODES_PROVISIONER",
 ]
 
