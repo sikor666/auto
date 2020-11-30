@@ -24,14 +24,12 @@ The command below starts AutoPTS server on Windows:
 
     python.exe autoptsserver.py
 
-**Testing bluetooth service on Maxwell/Fusion**
+**Testing bluetooth service on Maxwell/Fusion from remote Linux host**
 
-Example of running all PBAP test cases from remote Linux host:
-
+```bash
+# Run all PBAP test cases from remote Linux host.
+# PTS Workspace on Windows: "C:\Users\bluetooth\Documents\Profile Tuning Suite\Maxwell\Maxwell.pqw6"
+# AutoPTS Server IP: 192.168.1.103
+# Local IP Address:  192.168.1.104
+./autoptsclient-maxwell.py "C:\Users\bluetooth\Documents\Profile Tuning Suite\Maxwell\Maxwell.pqw6" -i 192.168.1.103 -l 192.168.1.104 -c PBAP
 ```
-    PTS Workspace on Windows: "C:\Users\bluetooth\Documents\Profile Tuning Suite\Maxwell\Maxwell.pqw6"
-    AutoPTS Server IP: 192.168.1.103
-    Local IP Address:  192.168.1.104
-```
-
-    ./autoptsclient-maxwell.py "C:\Users\bluetooth\Documents\Profile Tuning Suite\Maxwell\Maxwell.pqw6" -i 192.168.1.103 -l 192.168.1.104 -c PBAP
