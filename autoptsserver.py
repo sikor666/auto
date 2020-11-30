@@ -20,7 +20,6 @@ class PyPTSWithXmlRpcCallback(ptscontrol.PyPTS):
 
         log("%s", self.__init__.__name__)
 
-        print("BluetoothTest")
         self.client = mqtt.Client('BluetoothTest')
         self.client.connect('192.168.1.103')
         self.client.loop_start() #start loop to process received messages

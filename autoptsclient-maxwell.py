@@ -28,14 +28,11 @@ def main():
 
     autoprojects.pbap.set_pixits(ptses[0])
 
-    # test_cases = autoprojects.gap.test_cases(ptses[0])
-    # test_cases += autoprojects.sm.test_cases(ptses[0])
-    # test_cases += autoprojects.pbap.test_cases(ptses[0])
     test_cases = autoprojects.pbap.test_cases(ptses[0])
+    # test_cases += autoprojects.hfp.test_cases(ptses[0])
 
     autoptsclient.run_test_cases(ptses, test_cases, args)
 
-    print("\nBye!")
     sys.stdout.flush()
 
     for pts in ptses:

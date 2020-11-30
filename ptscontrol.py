@@ -96,7 +96,6 @@ class PTSSender(win32com.server.connect.ConnectableServer):
         """"Constructor"""
         super(PTSSender, self).__init__()
 
-        print("Constructor: ", self.__class__.__name__)
         self._callback = None
         self._mqtt_response = None
         self._mqtt_client = client
