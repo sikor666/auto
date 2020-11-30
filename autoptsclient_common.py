@@ -60,7 +60,6 @@ xmlrpc.client._Method = _Method
 class ClientCallback(PTSCallback):
     def __init__(self):
         self.exception = queue.Queue()
-        self._pending_responses = {}
 
     def error_code(self):
         """Return error code or None if there are no errors
@@ -119,23 +118,6 @@ class ClientCallback(PTSCallback):
             # exit does not work, cause app is blocked in PTS.RunTestCase?
             sys.exit("Exception in Log")
 
-    def set_pending_response(self, pending_response):
-        tc_name = pending_response[0]
-        response = pending_response[1]
-        delay = pending_response[2]
-
-        self._pending_responses[tc_name] = {"value": response, "delay": delay}
-
-    def clear_pending_responses(self):
-        self._pending_responses = {}
-
-    def cleanup(self):
-        self.clear_pending_responses()
-
-        while not self.exception.empty():
-            self.exception.get_nowait()
-            self.exception.task_done()
-
 
 class CallbackThread(threading.Thread):
     """Thread for XML-RPC callback server
@@ -149,7 +131,6 @@ class CallbackThread(threading.Thread):
         threading.Thread.__init__(self)
         self.callback = ClientCallback()
         self.port = port
-        self.current_test_case = None
 
     def run(self):
         """Starts the xmlrpc callback server"""
@@ -157,37 +138,10 @@ class CallbackThread(threading.Thread):
 
         log("Serving on port %s ...", self.port)
 
-        server = SimpleXMLRPCServer(("", self.port),
-                                    allow_none=True, logRequests=False)
+        server = SimpleXMLRPCServer(("", self.port), allow_none=True, logRequests=False)
         server.register_instance(self.callback)
         server.register_introspection_functions()
         server.serve_forever()
-
-    def set_current_test_case(self, name):
-        log("%s.%s %s", self.__class__.__name__, self.set_current_test_case.__name__, name)
-        self.current_test_case = name
-
-    def get_current_test_case(self):
-        log("%s.%s %s", self.__class__.__name__, self.get_current_test_case.__name__, self.current_test_case)
-        return self.current_test_case
-
-    def error_code(self):
-        log("%s.%s", self.__class__.__name__, self.error_code.__name__)
-        return self.callback.error_code()
-
-    def set_pending_response(self, pending_response):
-        log("%s.%s, %r", self.__class__.__name__,
-            self.set_pending_response.__name__, pending_response)
-        return self.callback.set_pending_response(pending_response)
-
-    def clear_pending_responses(self):
-        log("%s.%s", self.__class__.__name__,
-            self.clear_pending_responses.__name__)
-        return self.callback.clear_pending_responses()
-
-    def cleanup(self):
-        log("%s.%s", self.__class__.__name__, self.cleanup.__name__)
-        return self.callback.cleanup()
 
 
 def get_my_ip_address():
@@ -546,18 +500,9 @@ def run_test_case_thread_entry(pts, test_case):
         RUNNING_TEST_CASE[test_case.name] = test_case
         test_case.status = "RUNNING"
         test_case.state = "RUNNING"
-        pts.callback_thread.set_current_test_case(test_case.name)
         error_code = pts.run_test_case(test_case.project_name, test_case.name)
 
-        log("After run_test_case error_code=%r status=%r",
-            error_code, test_case.status)
-
-        # raise exception discovered by thread
-        thread_error = pts.callback_thread.error_code()
-        pts.callback_thread.cleanup()
-
-        if thread_error:
-            error_code = thread_error
+        log("After run_test_case error_code=%r status=%r", error_code, test_case.status)
 
     except Exception as error:
         logging.exception(error)
