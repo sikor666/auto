@@ -28,8 +28,8 @@ def main():
 
     autoprojects.pbap.set_pixits(ptses[0])
 
-    test_cases = autoprojects.pbap.test_cases(ptses[0])
-    # test_cases += autoprojects.hfp.test_cases(ptses[0])
+    test_cases = autoprojects.pbap.test_cases()
+    # test_cases += autoprojects.hfp.test_cases()
 
     autoptsclient.run_test_cases(ptses, test_cases, args)
 

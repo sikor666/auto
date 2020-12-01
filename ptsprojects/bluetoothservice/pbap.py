@@ -36,8 +36,8 @@ def set_pixits(pts):
     pts.set_pixit("PBAP", "TSPX_PullVCardEntry_invalid_value", "F1984D696B612048C3A46B6B696E656E")
 
 
-def test_cases(pts):
-    """Returns a list of PBAP test cases pts -- Instance of PyPTS"""
+def test_cases():
+    """Returns a list of implemented PBAP test cases"""
 
     test_cases = [
         BTestCase("PBAP", "PBAP/PCE/PBD/BV-01-C"),
@@ -54,7 +54,7 @@ def test_cases(pts):
 def main():
     """Main."""
 
-    test_cases_ = test_cases("AB:CD:EF:12:34:56")
+    test_cases_ = test_cases()
 
     for test_case in test_cases_:
         print()
