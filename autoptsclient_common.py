@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+
+
 """Common code for the auto PTS clients"""
 
 import os

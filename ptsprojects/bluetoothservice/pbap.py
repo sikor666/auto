@@ -1,3 +1,5 @@
+
+
 """PBAP test cases"""
 
 from ptsprojects.bluetoothservice.btestcase import BTestCase

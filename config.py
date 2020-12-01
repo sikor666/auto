@@ -1,3 +1,5 @@
+
+
 """Configuration variables"""
 
 SERVER_PORT = 65000

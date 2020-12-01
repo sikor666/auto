@@ -1,3 +1,5 @@
+
+
 """Python bindings for PTSControl introp objects
 
 Cause of tight coupling with PTS, this module is Windows specific
@@ -348,7 +350,8 @@ class PyPTS:
         Timeouts break some PTS functionality, hence it is good idea to start a
         new instance of PTS every time. For details see:
 
-        https://www.bluetooth.org/pts/issues/view_issue.cfm?id=13794
+        https://bluetooth.service-now.com/ess/case_status
+        CASE0034034 [Legacy Ticket ID: 13794]
 
         PTS timeouts also break run_test_case in a way that the status of
         completed test cases is incorrect.

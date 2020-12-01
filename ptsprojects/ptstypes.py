@@ -1,3 +1,5 @@
+
+
 """Platform independent PTS types"""
 
 # log type as on Windows in PTSControl._PTS_LOGTYPE
@@ -28,14 +30,14 @@ PTS_LOGTYPE_STRING = [
 ]
 
 """PTS MMI styles"""
-MMI_Style_Ok_Cancel1     = 0x11041
-MMI_Style_Ok_Cancel2     = 0x11141
-MMI_Style_Ok             = 0x11040
-MMI_Style_Yes_No1        = 0x11044
-MMI_Style_Yes_No_Cancel1 = 0x11043
-MMI_Style_Abort_Retry1   = 0x11042
-MMI_Style_Edit1          = 0x12040
-MMI_Style_Edit2          = 0x12140
+MMI_Style_Ok_Cancel1 =     0x11041 # Simple prompt           | OK, Cancel buttons      | Default: OK
+MMI_Style_Ok_Cancel2 =     0x11141 # Simple prompt           | Cancel button           | Default: Cancel
+MMI_Style_Ok =             0x11040 # Simple prompt           | OK button               | Default: OK
+MMI_Style_Yes_No1 =        0x11044 # Simple prompt           | Yes, No buttons         | Default: Yes
+MMI_Style_Yes_No_Cancel1 = 0x11043 # Simple prompt           | Yes, No, Cancel buttons | Default: Yes
+MMI_Style_Abort_Retry1 =   0x11042 # Simple prompt           | Abort, Retry buttons    | Default: Abort
+MMI_Style_Edit1 =          0x12040 # Request for data input  | OK, Cancel buttons      | Default: OK
+MMI_Style_Edit2 =          0x12140 # Select item from a list | OK, Cancel buttons      | Default: OK
 
 MMI_STYLE_STRING = {
     MMI_Style_Ok_Cancel1     : "MMI_Style_Ok_Cancel1",
