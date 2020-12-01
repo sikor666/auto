@@ -20,18 +20,23 @@ class PyPTSWithXmlRpcCallback(ptscontrol.PyPTS):
 
         log("%s", self.__init__.__name__)
 
-        self.client = mqtt.Client('BluetoothTest')
-        self.client.connect('192.168.1.103')
-        self.client.loop_start() #start loop to process received messages
-        self.client.subscribe("test/user") #subscribe
+        self.mqtt_client = mqtt.Client('bluetoothautopts')
+        self.mqtt_client.connect('127.0.0.1')
+        self.mqtt_client.loop_start() # start loop to process received messages
+        self.mqtt_client.subscribe("test/user")
 
-        ptscontrol.PyPTS.__init__(self, self.client)
+        ptscontrol.PyPTS.__init__(self, self.mqtt_client)
 
         # address of the auto-pts client that started it's own xmlrpc server to
         # receive callback messages
         self.client_address = None
         self.client_port = None
         self.client_xmlrpc_proxy = None
+
+    def __del__(self):
+        """"Destructor"""
+        self.mqtt_client.disconnect()
+        self.mqtt_client.loop_stop()
 
     def register_xmlrpc_ptscallback(self, client_address, client_port):
         """Registers client callback. xmlrpc proxy/client calls this method

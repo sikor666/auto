@@ -92,13 +92,13 @@ class PTSSender(win32com.server.connect.ConnectableServer):
     _reg_progid_ = "autopts.PTSSender"
     _public_methods_ = ['OnImplicitSend'] + win32com.server.connect.ConnectableServer._public_methods_
 
-    def __init__(self, client):
+    def __init__(self, mqtt_client):
         """"Constructor"""
         super(PTSSender, self).__init__()
 
         self._callback = None
         self._mqtt_response = None
-        self._mqtt_client = client
+        self._mqtt_client = mqtt_client
         self._mqtt_client.on_message = self.on_implicit_send_response
 
     def set_callback(self, callback):
@@ -118,8 +118,6 @@ class PTSSender(win32com.server.connect.ConnectableServer):
         # the result is a Python dictionary:
         status = command["parameters"]["status"]
         print("status: ", status)
-        # self.client.disconnect() #disconnect
-        # self.client.loop_stop() #stop loop
         self._mqtt_response = status
 
     def OnImplicitSend(self, project_name, wid, test_case, description, style):
@@ -236,11 +234,11 @@ class PyPTS:
 
     """
 
-    def __init__(self, client):
+    def __init__(self, mqtt_client):
         """Constructor"""
         log("%s", self.__init__.__name__)
 
-        self._mqtt_client = client
+        self._mqtt_client = mqtt_client
         self._init_attributes()
 
         # list of tuples of methods and arguments to recover after PTS restart
