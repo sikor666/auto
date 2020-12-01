@@ -26,7 +26,7 @@ with the tester application installed on Maxwell/Fusion. The easiest way is to r
 
 The command below starts tester on Maxwell/Fusion:
 
-    ./tester --host=[IP address of the windows server with the PTS testing equipment (Dongle)]
+    ./tester --host=[IP address of the host with MQTT message broker]
 
 The command below starts auto PTS server on Windows:
 
