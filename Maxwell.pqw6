@@ -1,0 +1,1670 @@
+<WORKSPACE_INFORMATION NAME="Maxwell" PATH="C:\Users\blue\Documents\Profile Tuning Suite\Maxwell" CREATED_WITH="Profile Tuning Suite, 7.6.2, 9" BD_ADDR="589EC6082D87" QDID="159600">
+  <PROJECTS_INFORMATION>
+    <PROJECT_INFORMATION NAME="IOPT" TC_LOG="tc_log.xml" TC_SCRIPT="tc_sqript.xml" USERDLL="" USE_USERDLL="False" RUNTIME_LOGGING="False">
+      <PICS>
+        <Name>IOPT</Name>
+        <Version />
+        <Rows>
+          <Row>
+            <Name>TSPC_GAP_1_2</Name>
+            <Description>Limited-discoverable mode (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_GAP_1_3</Name>
+            <Description>General-discoverable mode (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_HFP_1_1</Name>
+            <Description>Role: Audio Gateway (AG)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_SDP_1b_2</Name>
+            <Description>Support for client role. (C.1)</Description>
+            <Reference>SDP, 2.1</Reference>
+            <Status>C.1</Status>
+            <Role />
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_SDP_2_1</Name>
+            <Description>Support for respond on search of single Service, using ServiceSearchRequest. (C.2)</Description>
+            <Reference>SDP, 4.5</Reference>
+            <Status>C.2</Status>
+            <Role />
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_AdvancedAudioDistributionProfile_Sink</Name>
+            <Description>Support for: Advanced Audio Distribution Profile.              Role: Sink</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_AdvancedAudioDistributionProfile_Source</Name>
+            <Description>Support for: Advanced Audio Distribution Profile.              Role: Source</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_AVRemoteControlProfile_CT</Name>
+            <Description>Support for: Audio\Video Remote Control Profile.              Role: Controller</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_AVRemoteControlProfile_TG</Name>
+            <Description>Support for: Audio\Video Remote Control Profile.              Role: Target</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_BasicImagingProfile_CLIENT</Name>
+            <Description>Support for: Basic Imaging Profile.                                      Role: Client</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_BasicImagingProfile_SERVER_ImagingAutomaticArchive</Name>
+            <Description>Support for: Basic Imaging Profile.                                      Role: Server                Functionality: Imaging autoarchive</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_BasicImagingProfile_SERVER_ImagingReferencedObjects</Name>
+            <Description>Support for: Basic Imaging Profile.                                      Role: Server                Functionality: Imaging referenced objects</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_BasicImagingProfile_SERVER_ImagingResponder</Name>
+            <Description>Support for: Basic Imaging Profile.                                      Role: Server                Functionality: Imaging responder</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_BasicPrintingProfile_PRINTER</Name>
+            <Description>Support for: Basic Printing Profile.                                       Role: Printer</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_BasicPrintingProfile_PRINTER_ReflectedUI</Name>
+            <Description>Support for: Basic Printing Profile.                                       Role: Printer              Functionality: Reflected UI</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_BasicPrintingProfile_SENDER_Referenced_objects_Service</Name>
+            <Description>Support for: Basic Printing Profile.                                       Role: Sender              Functionality: Reference objects service</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_DialUpNetworkingProfile_DT</Name>
+            <Description>Support for: Dial-Up Networking Profile.                             Role: Data Terminal</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_DialUpNetworkingProfile_GW</Name>
+            <Description>Support for: Dial-Up Networking Profile.                             Role: Gateway</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_ExtendedServiceDiscoveryProfile_IP_LAP</Name>
+            <Description>Support for: Extended Service Discovery Profile.              Version: IP-LAP</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_ExtendedServiceDiscoveryProfile_IP_PAN</Name>
+            <Description>Support for: Extended Service Discovery Profile.              Version: IP-PAN</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_ExtendedServiceDiscoveryProfile_L2CAP</Name>
+            <Description>Support for: Extended Service Discovery Profile.              Version: L2CAP</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_FAXProfile_DT</Name>
+            <Description>Support for: FAX Profile.                                                      Role: Data Terminal</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_FAXProfile_GW</Name>
+            <Description>Support for: FAX Profile.                                                      Role: Gateway</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_FileTransferProfile_CLIENT</Name>
+            <Description>Support for: File Transfer Profile.                                        Role: Client </Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_FileTransferProfile_SERVER</Name>
+            <Description>Support for: File Transfer Profile.                                        Role: Server</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_HealthDeviceProfile_Sink</Name>
+            <Description>Support for: Health Device Profile                                       Role: Sink</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_HealthDeviceProfile_Source</Name>
+            <Description>Support for: Health Device Profile                                       Role: Source</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_NewHandsFreeProfile_AG</Name>
+            <Description>Support for: Handsfree Profile                         Role: Audio gateway</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_NewHandsFreeProfile_HF</Name>
+            <Description>Support for: Handsfree Profile                         Role: Hands-Free unit</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_HardCopyReplacementProfile_CLIENT_CR_RegisterNotofication_support</Name>
+            <Description>Support for: Hard Copy cable Replacement Profile.           Role: Client                 Functionality: CR register notification support</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_HardCopyReplacementProfile_CLIENT_print</Name>
+            <Description>Support for: Hard Copy cable Replacement Profile.           Role: Client                 Functionality: Print</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_HardCopyReplacementProfile_CLIENT_scan</Name>
+            <Description>Support for: Hard Copy cable Replacement Profile.           Role: Client                 Functionality: Scan</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_HardCopyReplacementProfile_SERVER_print</Name>
+            <Description>Support for: Hard Copy cable Replacement Profile.           Role: Server               Functionality: Print</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_HardCopyReplacementProfile_SERVER_scan</Name>
+            <Description>Support for: Hard Copy cable Replacement Profile.           Role: Server               Functionality: Scan</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_HeadsetProfile_AG</Name>
+            <Description>Support for: Headset Profile                                               Role: Audio Gateway</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_HeadsetProfile_HS</Name>
+            <Description>Support for: Headset Profile.                                              Role: Headset</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_HumanInterfaceDeviceProfile</Name>
+            <Description>Support for: Human Interface Device Profile                      Role: Device</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_HID_Host</Name>
+            <Description>Support for: Human Interface Device Profile                      Role: Host</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_LANAccessProfile_DT</Name>
+            <Description>Support for: LAN Access Profile.                                         Role: Data Terminal</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_LANAccessProfile_LAP</Name>
+            <Description>Support for: LAN Access Profile.                                         Role: LAN Access Point</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_MessageAccessProfile_MCE</Name>
+            <Description>Support for: Message Access Profile                                Role: MCE</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_MessageAccessProfile_MSE</Name>
+            <Description>Support for: Message Access Profile                                Role: MSE</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_ObjectPushProfile_CLIENT</Name>
+            <Description>Support for: Object Push Profile.                                        Role: Client</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_ObjectPushProfile_SERVER</Name>
+            <Description>Support for: Object Push Profile.                                        Role: Server  </Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_PersonalAreaNetworkProfile_GN</Name>
+            <Description>Support for: Personal Area Network Profile.                       Role: GN</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_PersonalAreaNetworkProfile_NAP</Name>
+            <Description>Support for: Personal Area Network Profile.                       Role: NAP</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_PersonalAreaNetworkProfile_PANU</Name>
+            <Description>Support for: Personal Area Network Profile.                       Role: PANU</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_PhonebookAccessProfile_PCE</Name>
+            <Description>Support for: Personal phone book access.                          Role: PCE.</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_PhonebookAccessProfile_PSE</Name>
+            <Description>Support for: Personal phone book access.                          Role: PSE.</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_SerialPortProfile_Service</Name>
+            <Description>Support for: Serial Port Profile.                                            Role: Dev B</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_ServiceDiscoveryApplicationProfile</Name>
+            <Description>Support for: Service Discovery Application Profile.</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_SIMAccessProfile_CLIENT</Name>
+            <Description>Support for: SIM access Profile.                                           Role: Client</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_SIMAccessProfile_SERVER</Name>
+            <Description>Support for: SIM access Profile.                                           Role: Server</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_SynchronizationProfile_CLIENT</Name>
+            <Description>Support for: Synchronization Profile.                                   Role: Client</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_SynchronizationProfile_SERVER</Name>
+            <Description>Support for: Synchronization Profile.                                   Role: Server</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_UDIProfile_MT</Name>
+            <Description>Support for: UDI Profile.                                                      Role: MT</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_UDIProfile_TA</Name>
+            <Description>Support for: UDI Profile.                                                      Role: TA</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_VideoDistributionProfile_Sink</Name>
+            <Description>Support for: Video distribution Profile.                                 Role: Sink </Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_VideoDistributionProfile_Source</Name>
+            <Description>Support for: Video distribution Profile.                                 Role: Source</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_WAPOverBluetooth_CLIENT</Name>
+            <Description>Support for: WAP over Bluetooth Profile.                            Role: Client</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_WAPOverBluetooth_PROXY</Name>
+            <Description>Support for: WAP over Bluetooth Profile.                            Role: PROXY </Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_GNSS_SERVER</Name>
+            <Description>Support for: GNSS Profile. 	Role: Server</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_3DSP_Display</Name>
+            <Description>Support for: 3DSP Profile.  	Role: Display</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_support_3DSP_Glasses</Name>
+            <Description>Support for: 3DSP Profile.  	Role: Glasses</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_ALL</Name>
+            <Description>Enables all test cases when set.</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+        </Rows>
+      </PICS>
+      <PIXIT>
+        <Name>IOPT</Name>
+        <Version />
+        <Rows>
+          <Row>
+            <Name>TSPX_security_enabled</Name>
+            <Description>Whether security is required for establishing connections. (Default: FALSE)</Description>
+            <Type>BOOLEAN</Type>
+            <Value>FALSE</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_delete_link_key</Name>
+            <Description>Whether to delete the stored link key in PTS at the beginning of each test case. (Default: FALSE)</Description>
+            <Type>BOOLEAN</Type>
+            <Value>FALSE</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_bd_addr_iut</Name>
+            <Description>Not Used</Description>
+            <Type>OCTETSTRING</Type>
+            <Value>589EC6082D87</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_class_of_device_pts</Name>
+            <Description>The class of device for the PTS. (Default: 200404) </Description>
+            <Type>OCTETSTRING</Type>
+            <Value>200404</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_class_of_device_test_pts_initiator</Name>
+            <Description>Currently not used</Description>
+            <Type>BOOLEAN</Type>
+            <Value>TRUE</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_limited_inquiry_used</Name>
+            <Description>Currently not used</Description>
+            <Type>BOOLEAN</Type>
+            <Value>FALSE</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_pin_code</Name>
+            <Description>The PIN code that is used to authenticate connections between PTS and IUT. (Default: 0000)</Description>
+            <Type>IA5STRING</Type>
+            <Value>0000</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_time_guard</Name>
+            <Description>The time in milliseconds, to break PTS from waiting for a required event, if time guard is used by the test case. (Default: 200000)</Description>
+            <Type>INTEGER</Type>
+            <Value>200000</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_device_search_time</Name>
+            <Description>The maximum time PTS searches for devices.(Default: 20)</Description>
+            <Type>INTEGER</Type>
+            <Value>20</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_use_implicit_send</Name>
+            <Description>Whether to receive a message via Implicit Send when an action or attention is needed by test operator. (Default: TRUE)</Description>
+            <Type>BOOLEAN</Type>
+            <Value>TRUE</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_secure_simple_pairing_pass_key_confirmation</Name>
+            <Description>Whether manual confirmation on generated key is required during secure simple pairing (Default: FALSE)</Description>
+            <Type>BOOLEAN</Type>
+            <Value>FALSE</Value>
+          </Row>
+        </Rows>
+      </PIXIT>
+    </PROJECT_INFORMATION>
+    <PROJECT_INFORMATION NAME="PBAP" TC_LOG="tc_log.xml" TC_SCRIPT="tc_sqript.xml" USERDLL="" USE_USERDLL="False" RUNTIME_LOGGING="False">
+      <PICS>
+        <Name>PBAP</Name>
+        <Version />
+        <Rows>
+          <Row>
+            <Name>TSPC_PBAP_1_1</Name>
+            <Description>Role: PCE</Description>
+            <Value>TRUE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_1_2</Name>
+            <Description>Role: PSE</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_1</Name>
+            <Description>PCE: Phone Book Download (C1)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_2</Name>
+            <Description>PCE: Phone Book Browsing (C1)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_3</Name>
+            <Description>PCE: Session Management (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_4</Name>
+            <Description>PCE: Able to Request Size of the Phonebook (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_5</Name>
+            <Description>PCE: Database Identifier (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_6</Name>
+            <Description>PCE: Folder Version Counters (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_7</Name>
+            <Description>PCE: vCard Selecting (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_7a</Name>
+            <Description>PCE: Able to send vCardSelector (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_7b</Name>
+            <Description>PCE: Able to send vCardSelectorOperator (C4)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_8</Name>
+            <Description>PCE: Enhanced Missed Calls (C4)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_8a</Name>
+            <Description>PCE: Able to reset the missed Calls (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_9</Name>
+            <Description>PCE: X-BT-UCI vCard Field (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_9a</Name>
+            <Description>PCE: Able to request X-BT-UCI Field (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_10</Name>
+            <Description>PCE: X-BT-UID vCard Field (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_10a</Name>
+            <Description>PCE: Referencing Contacts (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_12</Name>
+            <Description>PCE: Contact Image Default Format (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_12a</Name>
+            <Description>PCE: Able to request Contact Images (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_13</Name>
+            <Description>PCE: Supported Phonebook Objects</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_13a</Name>
+            <Description>PCE: Telecom/pb (C3)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_13b</Name>
+            <Description>PCE: Telecom/ich (C3)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_13c</Name>
+            <Description>PCE: Telecom/och (C3)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_13d</Name>
+            <Description>PCE: Telecom/mch (C3)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_13e</Name>
+            <Description>PCE: Telecom/cch (C3)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_13f</Name>
+            <Description>PCE: Telecom/spd (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_13g</Name>
+            <Description>PCE: Telecom/fav (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_13h</Name>
+            <Description>PCE: SIM1/Telecom/pb (C3)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_13i</Name>
+            <Description>PCE: SIM1/Telecom/ich (C3)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_13j</Name>
+            <Description>PCE: SIM1/Telecom/och (C3)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_13k</Name>
+            <Description>PCE: SIM1/Telecom/mch (C3)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_13l</Name>
+            <Description>PCE: SIM1/Telecom/cch (C3)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_14</Name>
+            <Description>PCE: Able to send SearchProperty (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2_14a</Name>
+            <Description>PCE: Able to send SearchValue (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2a_1</Name>
+            <Description>PCE: PBAP 1.0 (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2a_2</Name>
+            <Description>PCE: PBAP 1.1 (C1)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2a_3</Name>
+            <Description>PCE: PBAP 1.2 (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_2b_1</Name>
+            <Description>PCE: PBAP 1.1.1 (C1)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_3_1</Name>
+            <Description>PCE: Pull Phone Book (C1)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_4_1</Name>
+            <Description>PCE: Set Phone Book (C1)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_4_2</Name>
+            <Description>PCE: Pull vCard Listing (C1)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_4_3</Name>
+            <Description>PCE: Pull vCard Entry (C1)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_5_1</Name>
+            <Description>PCE: vCard 2.1 (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_5_2</Name>
+            <Description>PCE: vCard 3.0 (C1)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_6_1</Name>
+            <Description>PCE: Connect (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_6_2</Name>
+            <Description>PCE: Disconnect (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_6_3</Name>
+            <Description>PCE: Get (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_6_4</Name>
+            <Description>PCE: Abort (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_6_5</Name>
+            <Description>PCE: SetPath (C1)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_6_6</Name>
+            <Description>PCE: Support for OBEX authentication initiation (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_6_7</Name>
+            <Description>PCE: Responding to OBEX Authentication (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_7_1</Name>
+            <Description>PCE: Name (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_7_2</Name>
+            <Description>PCE: Type (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_7_3</Name>
+            <Description>PCE: Body (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_7_4</Name>
+            <Description>PCE: End of Body (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_7_5</Name>
+            <Description>PCE: Target (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_7_6</Name>
+            <Description>PCE: Who (ability to parse) (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_7_7</Name>
+            <Description>PCE: Connection ID (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_7_8</Name>
+            <Description>PCE: Authentication Challenge (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_7_9</Name>
+            <Description>PCE: Authentication Response (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_7_10</Name>
+            <Description>PCE: Application Parameters (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_7_11</Name>
+            <Description>PCE: Single Response Mode (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_7_12</Name>
+            <Description>PCE: Single Response Mode Parameter (ability to parse) (c1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_7_13</Name>
+            <Description>PCE: Single Response Mode Parameter (ability to send) (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_8_1</Name>
+            <Description>PCE: Bad Request (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_8_2</Name>
+            <Description>PCE: Not Implemented (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_8_3</Name>
+            <Description>PCE: Unauthorized (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_8_4</Name>
+            <Description>PCE: Precondition Failed (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_8_5</Name>
+            <Description>PCE: Not Found (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_8_6</Name>
+            <Description>PCE: Not Acceptable (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_8_7</Name>
+            <Description>PCE: Service Unavailable (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_8_8</Name>
+            <Description>PCE: Forbidden (M)</Description>
+            <Value>TRUE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_1</Name>
+            <Description>PSE: Phone Book Download (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_2</Name>
+            <Description>PSE: Phone Book Browsing (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_3</Name>
+            <Description>PSE: Session Management (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_4</Name>
+            <Description>PSE: Able to request the size of the Phonebook (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_5</Name>
+            <Description>PSE: Database Identifier (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_5a</Name>
+            <Description>PSE: Able to keep a persistent Database Identifier (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_5b</Name>
+            <Description>PSE: Able to regenerate a Database Identifier (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_6</Name>
+            <Description>PSE: Folder Version Counters (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_6a</Name>
+            <Description>PSE: Able to Insert or Remove Entries (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_6b</Name>
+            <Description>PSE: Able to Modify contact primary Fields (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_6c</Name>
+            <Description>PSE: Able to Modify contact secondary Fields (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_7</Name>
+            <Description>PSE: vCard Selecting (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_8</Name>
+            <Description>PSE: Enhanced Missed Calls (C4)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_9</Name>
+            <Description>PSE: X-BT-UCI vCard Field (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_10</Name>
+            <Description>PSE: X-BT-UID vCard Field (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_10a</Name>
+            <Description>PSE: Referencing Contacts (C3)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_12</Name>
+            <Description>PSE: Contact Image Default Format (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_12a</Name>
+            <Description>PSE: Able to request Contact Images (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_13</Name>
+            <Description>PSE: Supported Phonebook Objects</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_13a</Name>
+            <Description>PSE: Telecom/pb (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_13b</Name>
+            <Description>PSE: Telecom/ich (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_13c</Name>
+            <Description>PSE: Telecom/och (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_13d</Name>
+            <Description>PSE: Telecom/mch (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_13e</Name>
+            <Description>PSE: Telecom/cch (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_13f</Name>
+            <Description>PSE: Telecom/spd (c2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_13g</Name>
+            <Description>PSE: Telecom/fav (c2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_13h</Name>
+            <Description>PSE: SIM1/Telecom/pb (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_13i</Name>
+            <Description>PSE: SIM1/Telecom/ich (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_13j</Name>
+            <Description>PSE: SIM1/Telecom/och (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_13k</Name>
+            <Description>PSE: SIM1/Telecom/mch (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_13l</Name>
+            <Description>PSE: SIM1/Telecom/cch (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_14a</Name>
+            <Description>PSE: Error reporting (c5)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9_14b</Name>
+            <Description>PSE: Change tracking (c5)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9a_1</Name>
+            <Description>PSE: PBAP 1.0 (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9a_2</Name>
+            <Description>PSE: PBAP 1.1 (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9a_3</Name>
+            <Description>PSE: PBAP 1.2 (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_9b_1</Name>
+            <Description>PSE: PBAP 1.1.1 (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_10_1</Name>
+            <Description>PSE: Pull Phone Book (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_10_2</Name>
+            <Description>PSE: Call History Function (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_11_1</Name>
+            <Description>PSE: Set Phone Book (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_11_2</Name>
+            <Description>PSE: Pull vCard Listing (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_11_3</Name>
+            <Description>PSE: Pull vCard Entry (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_12_1</Name>
+            <Description>PSE: vCard 2.1 (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_12_2</Name>
+            <Description>PSE: vCard 3.0 (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_13_1</Name>
+            <Description>PSE: Connect (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_13_2</Name>
+            <Description>PSE: Disconnect (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_13_3</Name>
+            <Description>PSE: Get (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_13_4</Name>
+            <Description>PSE: Abort (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_13_5</Name>
+            <Description>PSE: SetPath (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_13_6</Name>
+            <Description>PSE: Support for OBEX authentication initiation (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_14_1</Name>
+            <Description>PSE: Name (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_14_2</Name>
+            <Description>PSE: Type (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_14_3</Name>
+            <Description>PSE: Body (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_14_4</Name>
+            <Description>PSE: End of Body (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_14_5</Name>
+            <Description>PSE: Target (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_14_6</Name>
+            <Description>PSE: Who (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_14_7</Name>
+            <Description>PSE: Connection ID (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_14_8</Name>
+            <Description>PSE: Authentication Challenge (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_14_9</Name>
+            <Description>PSE: Authentication Response (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_14_10</Name>
+            <Description>PSE: Application Parameters (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_14_11</Name>
+            <Description>PSE: Single Response Mode (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_14_12</Name>
+            <Description>PSE: Single Response Mode Parameter (ability to parse) (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_14_13</Name>
+            <Description>PSE: Single Response Mode Parameter (ability to send) (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_15_1</Name>
+            <Description>PSE: Bad Request (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_15_2</Name>
+            <Description>PSE: Not Implemented (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_15_3</Name>
+            <Description>PSE: Unauthorized (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_15_4</Name>
+            <Description>PSE: Precondition Failed (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_15_5</Name>
+            <Description>PSE: Not Found (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_15_6</Name>
+            <Description>PSE: Not Acceptable (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_15_7</Name>
+            <Description>PSE: Service Unavailable (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_15_8</Name>
+            <Description>PSE: Forbidden (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_16_1</Name>
+            <Description>PCE: General discoverable mode (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_16_2</Name>
+            <Description>PCE: Pairable mode (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_17_1</Name>
+            <Description>PSE: General discoverable mode (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_17_2</Name>
+            <Description>PSE: Pairable mode (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_21_1</Name>
+            <Description>PSE: Initiation of General Inquiry (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_21_2</Name>
+            <Description>PSE: Initiation of Limited Inquiry (O)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_22_1</Name>
+            <Description>PCE: BluetoothProfileDescriptorList (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_23_1</Name>
+            <Description>PSE: ProtocolDescriptorList (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_23_2</Name>
+            <Description>PSE: BluetoothProfileDescriptorList (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_24_1</Name>
+            <Description>PCE: Retrieve Large Phone Book  (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_24_2</Name>
+            <Description>PSE: Transfer Large Phone Book  (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_24_3</Name>
+            <Description>PCE: Retrieve Empty Phone Book  (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_24_4</Name>
+            <Description>PSE: Transfer Empty Phone Book  (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_24_5</Name>
+            <Description>PSE: Return Phonebook - Limit number of entries (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_24_6</Name>
+            <Description>PSE: Return vCard listing - Limit number of entries (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_24_7</Name>
+            <Description>PSE: Phone Book Order (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_24_8</Name>
+            <Description>PSE: Call stack timestamps  (C3)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_24_9</Name>
+            <Description>PSE: No User Interaction (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_24_10</Name>
+            <Description>PSE: Special Character Handling (C2)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_25_1</Name>
+            <Description>PCE: GOEP v2.0 or later (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_25_2</Name>
+            <Description>PCE: GOEP v2.0 or later Backwards Compatibility (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_25_3</Name>
+            <Description>PCE: OBEX over L2CAP (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_25_4</Name>
+            <Description>PCE: OBEX SRM (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_25_5</Name>
+            <Description>PCE: Send OBEX SRMP header (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_25_6</Name>
+            <Description>PCE: Receive OBEX SRMP header (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_26_1</Name>
+            <Description>PSE: GOEP v2.0 or later (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_26_2</Name>
+            <Description>PSE: GOEP v2.0 or later Backwards Compatibility (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_26_3</Name>
+            <Description>PSE: OBEX over L2CAP (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_26_4</Name>
+            <Description>PSE: OBEX SRM (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_26_5</Name>
+            <Description>PSE: Send OBEX SRMP header (C1)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_PBAP_26_6</Name>
+            <Description>PSE: Receive OBEX SRMP header (M)</Description>
+            <Value>FALSE</Value>
+            <Mandatory>TRUE</Mandatory>
+          </Row>
+          <Row>
+            <Name>TSPC_ALL</Name>
+            <Description>Turns on all the test cases</Description>
+            <Value>FALSE</Value>
+            <Mandatory>FALSE</Mandatory>
+          </Row>
+        </Rows>
+      </PICS>
+      <PIXIT>
+        <Name>PBAP</Name>
+        <Version />
+        <Rows>
+          <Row>
+            <Name>TSPX_auth_password</Name>
+            <Description>Password used during the AUTHENTICATION digest resposne. (Default: "0000")</Description>
+            <Type>IA5STRING</Type>
+            <Value>0000</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_auth_user_id</Name>
+            <Description>User ID used during the AUTEHNTICATION digest response.  (Default: "PTS")</Description>
+            <Type>IA5STRING</Type>
+            <Value>PTS</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_security_enabled</Name>
+            <Description>Whether security is required for establishing connections. (Default: TRUE)</Description>
+            <Type>BOOLEAN</Type>
+            <Value>TRUE</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_bd_addr_iut</Name>
+            <Description>The unique 48-bit Bluetooth device address (BD_ADDR) of the IUT. This was filled in during workspace creation.</Description>
+            <Type>OCTETSTRING</Type>
+            <Value>589EC6082D87</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_pin_code</Name>
+            <Description>The PIN code that is used to authenticate connections between PTS and IUT. (Default: 0000)</Description>
+            <Type>IA5STRING</Type>
+            <Value>0000</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_time_guard</Name>
+            <Description>The time in milliseconds, to break PTS from waiting for a required event, if time guard is used by the test case. (Default: 6000000)</Description>
+            <Type>INTEGER</Type>
+            <Value>6000000</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_use_implicit_send</Name>
+            <Description>Whether to receive a message via Implicit Send when an action or attention is needed by test operator. (Default: TRUE)</Description>
+            <Type>BOOLEAN</Type>
+            <Value>TRUE</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_client_class_of_device</Name>
+            <Description>The indicated capabilities of PTS in CLIENT role (Default: 100204)</Description>
+            <Type>OCTETSTRING</Type>
+            <Value>100204</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_server_class_of_device</Name>
+            <Description>The indicated capabilities of PTS in SERVER role (Default: 100204)</Description>
+            <Type>OCTETSTRING</Type>
+            <Value>100204</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_PSE_vCardSelector</Name>
+            <Description>This application parameter is used to filter for vCards that contain the requested vCard attributes.</Description>
+            <Type>OCTETSTRING</Type>
+            <Value>0000000000000001</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_delete_link_key</Name>
+            <Description>Whether to delete the stored link key in PTS at the beginning of each test case. (Default: FALSE)</Description>
+            <Type>BOOLEAN</Type>
+            <Value>FALSE</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_PBAP_rfcomm_channel</Name>
+            <Description>The RFCOMM server channel to be used in the PTS's SDP record, and for accepting incoming RFCOMM connections (Default: 1)</Description>
+            <Type>INTEGER</Type>
+            <Value>1</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_telecom_folder_path</Name>
+            <Description>To be filled</Description>
+            <Type>IA5STRING</Type>
+            <Value>telecom</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_secure_simple_pairing_pass_key_confirmation</Name>
+            <Description>Whether manual confirmation on generated key is required during secure simple pairing (Default: FALSE)</Description>
+            <Type>BOOLEAN</Type>
+            <Value>FALSE</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_SPP_rfcomm_channel</Name>
+            <Description>The RFCOMM server channel to be used in the PTS for SPP. (Default: 03)</Description>
+            <Type>OCTETSTRING</Type>
+            <Value>03</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_l2cap_psm</Name>
+            <Description>The PSM PTS advertises in its SDP record if GOEP 2.0 is being tested.  This value should be in hexadecimal format, but should not include a leading 0x. (Default: 1005)</Description>
+            <Type>OCTETSTRING</Type>
+            <Value>1005</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_rfcomm_channel</Name>
+            <Description>RFCOMM server channel that will be opened for incoming OBEX connections from the IUT for OBEX. (Default: 2)</Description>
+            <Type>INTEGER</Type>
+            <Value>2</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_no_confirmations</Name>
+            <Description>This IXIT controls whether or not the user is asked to confirm that tranferred files are correct.  This value must be set to FALSE for qualification.</Description>
+            <Type>BOOLEAN</Type>
+            <Value>FALSE</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_Automation</Name>
+            <Description>Automation state. (Default: FALSE)</Description>
+            <Type>BOOLEAN</Type>
+            <Value>FALSE</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_search_criteria</Name>
+            <Description>String value used for search value</Description>
+            <Type>IA5STRING</Type>
+            <Value>PTS</Value>
+          </Row>
+          <Row>
+            <Name>TSPX_PullVCardEntry_invalid_value</Name>
+            <Description>Invalid value for the PullvCardEntry X-BT-UID Name Header. (X-BT-UID:xxx...xxx) [32 hexadecimal characters] (Default:F1984D696B612048C3A46B6B696E656E)</Description>
+            <Type>IA5STRING</Type>
+            <Value>F1984D696B612048C3A46B6B696E656E</Value>
+          </Row>
+        </Rows>
+      </PIXIT>
+    </PROJECT_INFORMATION>
+  </PROJECTS_INFORMATION>
+</WORKSPACE_INFORMATION>
