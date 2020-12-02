@@ -1,7 +1,7 @@
 """Platform independent PTS types"""
 
-# log type as on Windows in PTSControl._PTS_LOGTYPE
-PTS_LOGTYPE_INFRASTRUCTURE      = 0
+# The values for the PTS log type are found in PTSControl.h
+# and description in Extended_Automating.pdf:
 PTS_LOGTYPE_START_TEST          = 1
 PTS_LOGTYPE_END_TEST            = 2
 PTS_LOGTYPE_IMPLICIT_SEND       = 3
