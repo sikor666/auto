@@ -136,7 +136,7 @@ def init_pts_thread_entry(proxy, local_address, local_port, workspace_path,
     proxy.callback_thread = CallbackThread(local_port)
     proxy.callback_thread.start()
 
-    proxy.set_call_timeout(300000)  # milliseconds
+    proxy.set_call_timeout(6000)  # milliseconds
 
     log("Server methods: %s", proxy.system.listMethods())
     log("PTS Version: %s", proxy.get_version())
@@ -447,32 +447,18 @@ def run_test_case(ptses, test_case_instances, test_case_name, stats, session_log
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
-    while True:
-        # Multiple PTS instances test cases may fill status already
-        if test_case.status != 'init':
-            continue
+    if test_case.status != 'init':
+        # FIXME
+        return 'NOT_INITIALIZED'
 
-        # Multi-instance related stuff
-        pts_threads = []
+    # If we want to run tests on multiple PTS instances
+    # we can create multiple threads here and implement
+    # multiple classes that inherit from the TestCase class
+    run_test_case_thread_entry(ptses[0], test_case)
 
-        pts_thread = threading.Thread(
-            target=run_test_case_thread_entry,
-            args=(ptses[0], test_case))
-        pts_threads.append(pts_thread)
-        pts_thread.start()
+    logger.removeHandler(file_handler)
 
-        # If we want to run tests on multiple PTS instances
-        # we can create multiple threads here, but this feature
-        # require implementation multiple classes that inherit
-        # from the TestCase class
-
-        # Wait till every PTS instance finish executing test case
-        for pts_thread in pts_threads:
-            pts_thread.join()
-
-        logger.removeHandler(file_handler)
-
-        return test_case.status
+    return test_case.status
 
 
 def run_test_cases(ptses, test_case_instances, args):
