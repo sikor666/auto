@@ -248,8 +248,6 @@ class PyPTS:
         self._temp_changes = []
         self._recov_in_progress = False
 
-        self._temp_workspace_path = None
-
         # This is done to have valid _pts in case client does not restart_pts
         # and uses other methods. Normally though, the client should
         # restart_pts, see its docstring for the details
@@ -458,33 +456,10 @@ class PyPTS:
         self._pts.CreateWorkspace(bd_addr, pts_file_path, workspace_name,
                                   workspace_path)
 
-    @staticmethod
-    def _get_own_workspaces():
-        """Get auto-pts own workspaces"""
-        script_path = os.path.split(os.path.realpath(__file__))[0]
-        workspaces = {}
-
-        for root, dirs, files in os.walk("workspaces"):
-            for file in files:
-                if file.endswith(PTS_WORKSPACE_FILE_EXT):
-                    name = os.path.splitext(file)[0]
-                    path = os.path.join(script_path, root, file)
-                    workspaces[name] = path
-
-        return workspaces
-
     def open_workspace(self, workspace_path):
         """Opens existing workspace"""
 
         log("%s %s", self.open_workspace.__name__, workspace_path)
-
-        # auto-pts own workspaces
-        autopts_workspaces = self._get_own_workspaces()
-
-        if workspace_path in list(autopts_workspaces.keys()):
-            workspace_name = workspace_path
-            workspace_path = autopts_workspaces[workspace_path]
-            log("Using %s workspace: %s", workspace_name, workspace_path)
 
         if not os.path.isfile(workspace_path):
             raise Exception("Workspace file '%s' does not exist" %
@@ -496,22 +471,9 @@ class PyPTS:
                 "Workspace file '%s' extension is wrong, should be %s" %
                 (workspace_path, PTS_WORKSPACE_FILE_EXT))
 
-        # Workaround CASE0044114 PTS issue
-        # Do not open original workspace file that can become broken by
-        # TestCase. Instead use a copy of this file
-        if self._temp_workspace_path and \
-                os.path.exists(self._temp_workspace_path):
-            os.unlink(self._temp_workspace_path)
+        log("Open workspace: %s", workspace_path)
 
-        workspace_dir = os.path.dirname(workspace_path)
-        workspace_name = os.path.basename(workspace_path)
-
-        self._temp_workspace_path = \
-            os.path.join(workspace_dir, "temp_" + workspace_name)
-        shutil.copy2(workspace_path, self._temp_workspace_path)
-        log("Using temporary workspace: %s", self._temp_workspace_path)
-
-        self._pts.OpenWorkspace(self._temp_workspace_path)
+        self._pts.OpenWorkspace(workspace_path)
         self.add_recov(self.open_workspace, workspace_path)
         self._cache_test_cases()
 
