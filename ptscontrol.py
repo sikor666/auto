@@ -17,7 +17,6 @@ import pythoncom
 import ptsprojects.ptstypes as ptstypes
 import ctypes
 import json
-from config import PTS_TIMEOUT
 
 log = logging.debug
 
@@ -267,31 +266,20 @@ class PyPTS:
         # Cached frequently used PTS attributes: for optimisation reasons it is
         # avoided to contact PTS. These attributes should not change anyway.
         self.__bd_addr = None
-
         self._pts_projects = {}
 
-    def recover_pts(self, workspace_path):
+    def recover_pts(self, workspace_path, pts_timeout):
         """Recovers PTS from errors occured during RunTestCase call.
 
         The errors include timeout set by SetPTSCallTimeout. The only way to
-        correctly recover is to restart PTS and restore its settings.
-
-        Timeouts break some PTS functionality, hence it is good idea to start a
-        new instance of PTS every time. For details see:
-
-        https://bluetooth.service-now.com/ess/case_status
-        CASE0034034 [Legacy Ticket ID: 13794]
-
-        PTS timeouts also break run_test_case in a way that the status of
-        completed test cases is incorrect.
+        correctly recover is to restore PTS settings.
 
         """
 
-        log("%s %s", self.recover_pts.__name__, workspace_path)
+        log("%s timeout=%d %s", self.recover_pts.__name__, pts_timeout, workspace_path)
 
-        # self.restart_pts()
         self.open_workspace(workspace_path)
-        self.set_call_timeout(PTS_TIMEOUT)
+        self.set_call_timeout(pts_timeout)
 
     def restart_pts(self):
         """Restarts PTS
@@ -442,7 +430,7 @@ class PyPTS:
 
         return self._pts.GetTestCaseDescription(project_name, test_case_index)
 
-    def run_test_case(self, workspace_path, project_name, test_case_name):
+    def run_test_case(self, workspace_path, pts_timeout, project_name, test_case_name):
         """Executes the specified Test Case.
 
         If an error occurs when running test case returns code of an error as a
@@ -462,7 +450,7 @@ class PyPTS:
         except pythoncom.com_error as e:
             error_code = parse_ptscontrol_error(e)
             self.stop_test_case(project_name, test_case_name)
-            self.recover_pts(workspace_path)
+            self.recover_pts(workspace_path, pts_timeout)
 
         log("Done %s %s %s out: %s", self.run_test_case.__name__,
             project_name, test_case_name, error_code)

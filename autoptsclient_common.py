@@ -393,7 +393,8 @@ def run_test_case_thread_entry(pts, workspace_path, test_case):
         RUNNING_TEST_CASE[test_case.name] = test_case
         test_case.status = "RUNNING"
         test_case.state = "RUNNING"
-        error_code = pts.run_test_case(workspace_path, test_case.project_name, test_case.name)
+        error_code = pts.run_test_case(workspace_path, PTS_TIMEOUT,
+                                       test_case.project_name, test_case.name)
 
         log("After run_test_case error_code=%r status=%r", error_code, test_case.status)
 
@@ -412,7 +413,7 @@ def run_test_case_thread_entry(pts, workspace_path, test_case):
 
         if error_code == ptstypes.E_XML_RPC_ERROR:
             pts.stop_test_case(test_case.project_name, test_case.name)
-            pts.recover_pts(workspace_path)
+            pts.recover_pts(workspace_path, PTS_TIMEOUT)
 
         test_case.state = "FINISHING"
         del RUNNING_TEST_CASE[test_case.name]
