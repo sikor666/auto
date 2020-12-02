@@ -409,9 +409,13 @@ def run_test_case_thread_entry(pts, workspace_path, test_case):
         error_code = get_error_code(None)
 
     finally:
+        if error_code is not None:
+            test_case.status = error_code
+
         if error_code == ptstypes.E_XML_RPC_ERROR:
             pts.stop_test_case(test_case.project_name, test_case.name)
             pts.recover_pts(workspace_path)
+
         test_case.state = "FINISHING"
         del RUNNING_TEST_CASE[test_case.name]
 

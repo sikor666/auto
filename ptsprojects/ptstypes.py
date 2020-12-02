@@ -93,9 +93,9 @@ E_RPC_CALL_FAILED                                        = 0x800706BE
 
 
 # these errors are not raised by PTS on Windows, they happen on Linux only
-E_XML_RPC_ERROR                                          = "XML-RPC ERROR"
+E_XML_RPC_ERROR                                          = "XML_RPC_ERROR"
 # unhandled exception
-E_FATAL_ERROR                                            = "FATAL ERROR"
+E_FATAL_ERROR                                            = "FATAL_ERROR"
 
 
 PTSCONTROL_E_STRING = {

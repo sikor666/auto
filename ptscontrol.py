@@ -455,7 +455,7 @@ class PyPTS:
 
         self._pts_logger.set_test_case_name(test_case_name)
 
-        error_code = ""
+        error_code = None
 
         try:
             self._pts.RunTestCase(project_name, test_case_name)
