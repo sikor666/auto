@@ -1,5 +1,3 @@
-
-
 """Test case that manages bluetooth service IUT"""
 
 from ptsprojects.testcase import TestCase

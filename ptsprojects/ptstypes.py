@@ -1,5 +1,3 @@
-
-
 """Platform independent PTS types"""
 
 # log type as on Windows in PTSControl._PTS_LOGTYPE

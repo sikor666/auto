@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-
-
 """Common code for the auto PTS clients"""
 
 import os
@@ -20,7 +18,7 @@ from termcolor import colored
 
 from ptsprojects.testcase import PTSCallback
 import ptsprojects.ptstypes as ptstypes
-from config import SERVER_PORT, CLIENT_PORT
+from config import SERVER_PORT, CLIENT_PORT, PTS_TIMEOUT
 
 import tempfile
 import xml.etree.ElementTree as ET
@@ -136,7 +134,7 @@ def init_pts_thread_entry(proxy, local_address, local_port, workspace_path,
     proxy.callback_thread = CallbackThread(local_port)
     proxy.callback_thread.start()
 
-    proxy.set_call_timeout(6000)  # milliseconds
+    proxy.set_call_timeout(PTS_TIMEOUT)  # milliseconds
 
     log("Server methods: %s", proxy.system.listMethods())
     log("PTS Version: %s", proxy.get_version())

@@ -1,5 +1,3 @@
-
-
 """Python bindings for PTSControl introp objects
 
 Cause of tight coupling with PTS, this module is Windows specific
@@ -19,6 +17,7 @@ import pythoncom
 import ptsprojects.ptstypes as ptstypes
 import ctypes
 import json
+from config import PTS_TIMEOUT
 
 log = logging.debug
 
@@ -292,7 +291,7 @@ class PyPTS:
 
         # self.restart_pts()
         self.open_workspace(workspace_path)
-        self.set_call_timeout(6000)
+        self.set_call_timeout(PTS_TIMEOUT)
 
     def restart_pts(self):
         """Restarts PTS
@@ -699,7 +698,7 @@ def main():
     pts.enable_maximum_logging(True)
     pts.enable_maximum_logging(False)
 
-    pts.set_call_timeout(600000)
+    pts.set_call_timeout(PTS_TIMEOUT)
     pts.set_call_timeout(0)
 
     pts.save_test_history_log(True)

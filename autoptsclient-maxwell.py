@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-
-
 """Maxwell auto PTS client"""
 
 import os

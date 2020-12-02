@@ -1,5 +1,3 @@
-
-
 """Windows utilities"""
 
 import os
