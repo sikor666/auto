@@ -125,7 +125,7 @@ def init_logging():
                         level=logging.DEBUG)
 
 
-def init_pts_thread_entry(proxy, local_address, local_port, workspace_path, 
+def init_pts_thread_entry(proxy, local_address, local_port, workspace_path,
                           bd_addr, enable_max_logs):
     """PTS instance initialization thread function entry"""
 
@@ -183,8 +183,8 @@ def init_pts(args):
         print("(%r) Starting PTS %s ..." % (id(proxy), server_addr))
 
         thread = threading.Thread(target=init_pts_thread_entry,
-                                  args=(proxy, local_addr, local_port, args.workspace,
-                                        args.bd_addr, args.enable_max_logs))
+                                  args=(proxy, local_addr, local_port,
+                                        args.workspace, args.bd_addr, args.enable_max_logs))
         thread.start()
 
         local_port += 1
@@ -319,8 +319,8 @@ class TestCaseRunStats(object):
 
 def run_test_case_wrapper(func):
     def wrapper(*args):
-        test_case_name = args[2]
-        stats = args[3]
+        test_case_name = args[3]
+        stats = args[4]
 
         run_count_max = stats.run_count_max
         run_count = stats.run_count
@@ -384,9 +384,10 @@ def get_error_code(exc):
     return error_code
 
 
-def run_test_case_thread_entry(pts, test_case):
+def run_test_case_thread_entry(pts, workspace_path, test_case):
     """Runs the test case specified by a TestCase instance"""
-    log("Starting TestCase %s %s", run_test_case_thread_entry.__name__, test_case)
+    log("Starting TestCase %s %s %s",
+        run_test_case_thread_entry.__name__, test_case, workspace_path)
 
     error_code = None
 
@@ -394,7 +395,7 @@ def run_test_case_thread_entry(pts, test_case):
         RUNNING_TEST_CASE[test_case.name] = test_case
         test_case.status = "RUNNING"
         test_case.state = "RUNNING"
-        error_code = pts.run_test_case(test_case.project_name, test_case.name)
+        error_code = pts.run_test_case(workspace_path, test_case.project_name, test_case.name)
 
         log("After run_test_case error_code=%r status=%r", error_code, test_case.status)
 
@@ -409,7 +410,7 @@ def run_test_case_thread_entry(pts, test_case):
 
     finally:
         if error_code == ptstypes.E_XML_RPC_ERROR:
-            pts.recover_pts()
+            pts.recover_pts(workspace_path)
         test_case.state = "FINISHING"
         del RUNNING_TEST_CASE[test_case.name]
 
@@ -417,7 +418,9 @@ def run_test_case_thread_entry(pts, test_case):
 
 
 @run_test_case_wrapper
-def run_test_case(ptses, test_case_instances, test_case_name, stats, session_log_dir):
+def run_test_case(ptses, workspace_path, test_case_instances, test_case_name,
+                  stats, session_log_dir):
+
     def test_case_lookup_name(name):
         """Return test case class instance if found or None otherwise"""
         if test_case_instances is None:
@@ -454,7 +457,7 @@ def run_test_case(ptses, test_case_instances, test_case_name, stats, session_log
     # If we want to run tests on multiple PTS instances
     # we can create multiple threads here and implement
     # multiple classes that inherit from the TestCase class
-    run_test_case_thread_entry(ptses[0], test_case)
+    run_test_case_thread_entry(ptses[0], workspace_path, test_case)
 
     logger.removeHandler(file_handler)
 
@@ -502,7 +505,7 @@ def run_test_cases(ptses, test_case_instances, args):
         stats.run_count = 0
 
         while True:
-            status, duration = run_test_case(ptses, test_case_instances,
+            status, duration = run_test_case(ptses, args.workspace, test_case_instances,
                                              test_case, stats, session_log_dir)
 
             if status == 'PASS' or stats.run_count == args.retry:

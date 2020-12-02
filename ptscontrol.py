@@ -341,7 +341,7 @@ class PyPTS:
 
         func(*args, **kwds)
 
-    def recover_pts(self):
+    def recover_pts(self, workspace_path):
         """Recovers PTS from errors occured during RunTestCase call.
 
         The errors include timeout set by SetPTSCallTimeout. The only way to
@@ -358,7 +358,7 @@ class PyPTS:
 
         """
 
-        log("%s", self.recover_pts.__name__)
+        log("%s %s", self.recover_pts.__name__, workspace_path)
         log("recov=%s", self._recov)
 
         self._recov_in_progress = True
@@ -586,15 +586,15 @@ class PyPTS:
         self._recov_in_progress = False
         self._temp_changes = []
 
-    def run_test_case(self, project_name, test_case_name):
+    def run_test_case(self, workspace_path, project_name, test_case_name):
         """Executes the specified Test Case.
 
         If an error occurs when running test case returns code of an error as a
         string, otherwise returns an empty string
         """
 
-        log("Starting %s %s %s", self.run_test_case.__name__, project_name,
-            test_case_name)
+        log("Starting %s %s %s %s", self.run_test_case.__name__, project_name,
+            test_case_name, workspace_path)
 
         self._pts_logger.set_test_case_name(test_case_name)
 
@@ -608,7 +608,7 @@ class PyPTS:
         except pythoncom.com_error as e:
             error_code = parse_ptscontrol_error(e)
 
-            self.recover_pts()
+            self.recover_pts(workspace_path)
 
         log("Done %s %s %s out: %s", self.run_test_case.__name__,
             project_name, test_case_name, error_code)
