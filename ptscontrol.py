@@ -110,7 +110,7 @@ class PTSSender(win32com.server.connect.ConnectableServer):
         self._callback = None
 
     def on_implicit_send_response(self, client, userdata, message):
-        # time.sleep(1)
+        """Called when MQTT message has been received"""
         message = str(message.payload.decode("utf-8"))
         log("MQTT response: %s" % message)
         # parse message:
@@ -170,7 +170,7 @@ class PTSSender(win32com.server.connect.ConnectableServer):
         self._mqtt_client.publish('user/test', message)
 
         try:
-            log("Calling callback.on_implicit_send")
+            log("Wait for MQTT response")
 
             while not self._mqtt_response:
                 # XXX: Ask for response every second
@@ -180,10 +180,11 @@ class PTSSender(win32com.server.connect.ConnectableServer):
                     self._mqtt_response = "Cancel"
                     break
 
-                log("Rechecking response...")
+                log("Rechecking MQTT response...")
                 time.sleep(1)
 
-            log("callback returned on_implicit_send, respose: %r", self._mqtt_response)
+            log("MQTT response returned after %d sec, respose: %r",
+                timer, self._mqtt_response)
 
         except Exception as e:
             log("Caught exception")
