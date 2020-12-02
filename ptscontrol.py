@@ -113,12 +113,12 @@ class PTSSender(win32com.server.connect.ConnectableServer):
     def on_implicit_send_response(self, client, userdata, message):
         # time.sleep(1)
         message = str(message.payload.decode("utf-8"))
-        print("message: ", message)
+        log("MQTT response: %s" % message)
         # parse message:
         command = json.loads(message)
         # the result is a Python dictionary:
         status = command["parameters"]["status"]
-        print("status: ", status)
+        log("MQTT response status: %s" % status)
         self._mqtt_response = status
 
     def OnImplicitSend(self, project_name, wid, test_case, description, style):
@@ -165,7 +165,7 @@ class PTSSender(win32com.server.connect.ConnectableServer):
         message = json.dumps(command)
 
         # the result is a JSON string:
-        print(message)
+        log("MQTT request: %s" % message)
 
         self._mqtt_response = None
         self._mqtt_client.publish('user/test', message)
