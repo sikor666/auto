@@ -445,7 +445,6 @@ def run_test_case(ptses, workspace_path, test_case_instances, test_case_name,
     # Lookup TestCase class instance
     test_case = test_case_lookup_name(test_case_name)
     if test_case is None:
-        # FIXME
         return 'NOT_IMPLEMENTED'
 
     test_case.reset()
@@ -455,7 +454,6 @@ def run_test_case(ptses, workspace_path, test_case_instances, test_case_name,
     logger.addHandler(file_handler)
 
     if test_case.status != 'init':
-        # FIXME
         return 'NOT_INITIALIZED'
 
     # If we want to run tests on multiple PTS instances
