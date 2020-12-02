@@ -243,11 +243,6 @@ class PyPTS:
         self._mqtt_client = mqtt_client
         self._init_attributes()
 
-        # list of tuples of methods and arguments to recover after PTS restart
-        self._recov = []
-        self._temp_changes = []
-        self._recov_in_progress = False
-
         # This is done to have valid _pts in case client does not restart_pts
         # and uses other methods. Normally though, the client should
         # restart_pts, see its docstring for the details
@@ -276,69 +271,6 @@ class PyPTS:
 
         self._pts_projects = {}
 
-    def add_recov(self, func, *args, **kwds):
-        """Add function to recovery list"""
-        if self._recov_in_progress:
-            return
-
-        log("%s %r %r %r", self.add_recov.__name__, func, args, kwds)
-
-        # Re-set recovery element to avoid duplications
-        if func == self.set_pixit:
-            profile = args[0]
-            pixit = args[1]
-            # Look for possible re-setable PIXIT
-            try:
-                '''Search for matching recover function, PIXIT and recover
-                if value was changed. '''
-                item = next(x for x in self._recov if ((x[0] ==
-                            self.set_pixit) and (x[1][0] == profile) and
-                            (x[1][1] == pixit)))
-
-                self._recov.remove(item)
-                log("%s, re-set pixit: %s", self.add_recov.__name__, pixit)
-
-            except StopIteration:
-                pass
-
-        self._recov.append((func, args, kwds))
-
-    def _add_temp_change(self, func, *args, **kwds):
-        """Add function to set temporary value"""
-        if not self._recov_in_progress:
-            log("%s %r %r %r", self._add_temp_change.__name__, func, args, kwds)
-            self._temp_changes.append((func, args, kwds))
-
-    def del_recov(self, func, *args, **kwds):
-        """Remove function from recovery list"""
-        log("%s %r %r %r", self.del_recov.__name__, func, args, kwds)
-
-        recov_funcs = [item[0] for item in self._recov]
-
-        if func not in recov_funcs:
-            return
-
-        # no arguments specified: remove all method calls
-        if not args and not kwds:
-            self._recov = [item for item in self._recov if item[0] != func]
-
-        # remove single method call with matching arguments
-        else:
-            item = (func, args, kwds)
-            if item in self._recov:
-                self._recov.remove(item)
-
-    def _recover_item(self, item):
-        """Recovery item wraper"""
-
-        func = item[0]
-        args = item[1]
-        kwds = item[2]
-        log("%s, Recovering: %s, %r %r", self._recover_item.__name__,
-            func, args, kwds)
-
-        func(*args, **kwds)
-
     def recover_pts(self, workspace_path):
         """Recovers PTS from errors occured during RunTestCase call.
 
@@ -357,16 +289,10 @@ class PyPTS:
         """
 
         log("%s %s", self.recover_pts.__name__, workspace_path)
-        log("recov=%s", self._recov)
 
-        self._recov_in_progress = True
-
-        self.restart_pts()
-
-        for item in self._recov:
-            self._recover_item(item)
-
-        self._recov_in_progress = False
+        # self.restart_pts()
+        self.open_workspace(workspace_path)
+        self.set_call_timeout(6000)
 
     def restart_pts(self):
         """Restarts PTS
@@ -474,7 +400,6 @@ class PyPTS:
         log("Open workspace: %s", workspace_path)
 
         self._pts.OpenWorkspace(workspace_path)
-        self.add_recov(self.open_workspace, workspace_path)
         self._cache_test_cases()
 
     def _cache_test_cases(self):
@@ -518,36 +443,6 @@ class PyPTS:
 
         return self._pts.GetTestCaseDescription(project_name, test_case_index)
 
-    def _revert_temp_changes(self):
-        """Recovery default state for test case"""
-
-        if not self._temp_changes:
-            return
-
-        log("%s", self._revert_temp_changes.__name__)
-
-        self._recov_in_progress = True
-
-        for tch in self._temp_changes:
-            func = tch[0]
-
-            if func == self.update_pixit_param:
-                # Look for possible recoverable parameter
-                try:
-                    '''Search for matching recover function, PIXIT and recover
-                    if value was changed. '''
-                    item = next(x for x in self._recov if ((x[0] ==
-                                self.set_pixit) and (x[1][0] ==
-                                tch[1][0]) and (x[1][1] == tch[1][1])))
-
-                    self._recover_item(item)
-
-                except StopIteration:
-                    continue
-
-        self._recov_in_progress = False
-        self._temp_changes = []
-
     def run_test_case(self, workspace_path, project_name, test_case_name):
         """Executes the specified Test Case.
 
@@ -565,11 +460,9 @@ class PyPTS:
         try:
             self._pts.RunTestCase(project_name, test_case_name)
 
-            self._revert_temp_changes()
-
         except pythoncom.com_error as e:
             error_code = parse_ptscontrol_error(e)
-
+            self.stop_test_case(project_name, test_case_name)
             self.recover_pts(workspace_path)
 
         log("Done %s %s %s out: %s", self.run_test_case.__name__,
@@ -578,13 +471,16 @@ class PyPTS:
         return error_code
 
     def stop_test_case(self, project_name, test_case_name):
-        """NOTE: According to documentation 'StopTestCase() is not currently
-        implemented'"""
+        """Submits a request to stop the executing Test Case"""
 
-        log("%s %s %s", self.is_active_test_case.__name__, project_name,
+        log("%s %s %s", self.stop_test_case.__name__, project_name,
             test_case_name)
 
-        self._pts.StopTestCase(project_name, test_case_name)
+        try:
+            self._pts.StopTestCase()
+
+        except pythoncom.com_error as e:
+            parse_ptscontrol_error(e)
 
     def get_test_case_count_from_tss_file(self, project_name):
         """Returns the number of test cases that are available in the specified
@@ -617,8 +513,6 @@ class PyPTS:
 
         try:
             self._pts.UpdatePics(project_name, entry_name, bool_value)
-            self.add_recov(self.set_pics, project_name, entry_name,
-                           bool_value)
 
         except pythoncom.com_error as e:
             parse_ptscontrol_error(e)
@@ -643,8 +537,6 @@ class PyPTS:
 
         try:
             self._pts.UpdatePixitParam(project_name, param_name, param_value)
-            self.add_recov(self.set_pixit, project_name, param_name,
-                           param_value)
 
         except pythoncom.com_error as e:
             parse_ptscontrol_error(e)
@@ -666,10 +558,7 @@ class PyPTS:
             param_name, new_param_value)
 
         try:
-            self._pts.UpdatePixitParam(
-                project_name, param_name, new_param_value)
-            self._add_temp_change(self.update_pixit_param, project_name,
-                                  param_name)
+            self._pts.UpdatePixitParam(project_name, param_name, new_param_value)
 
         except pythoncom.com_error as e:
             parse_ptscontrol_error(e)
@@ -685,12 +574,8 @@ class PyPTS:
         """Sets a timeout period in milliseconds for the RunTestCase() calls
         to PTS."""
 
+        # timeout 0 = no timeout
         self._pts.SetPTSCallTimeout(timeout)
-
-        if timeout:
-            self.add_recov(self.set_call_timeout, timeout)
-        else:  # timeout 0 = no timeout
-            self.del_recov(self.set_call_timeout)
 
     def save_test_history_log(self, save):
         """This function enables automation clients to specify whether test
@@ -731,8 +616,6 @@ class PyPTS:
         self._pts_logger.set_callback(callback)
         self._pts_sender.set_callback(callback)
 
-        self.add_recov(self.register_ptscallback, callback)
-
     def unregister_ptscallback(self):
         """Unregisters the testcase.PTSCallback callback"""
 
@@ -740,8 +623,6 @@ class PyPTS:
 
         self._pts_logger.unset_callback()
         self._pts_sender.unset_callback()
-
-        self.del_recov(self.register_ptscallback)
 
 
 def parse_args():
@@ -796,8 +677,8 @@ def main():
             print("Test case name:", test_case_name)
             print("Test case description:", pts.get_test_case_description(
                 project_name, test_case_index))
-            print("Is active test case:", pts.is_active_test_case(
-                project_name, test_case_name))
+            # print("Is active test case:", pts.is_active_test_case(
+            #     project_name, test_case_name))
 
     print("\n\n\n\nTSS file info:")
 
