@@ -816,8 +816,6 @@ def main():
 
     pts.open_workspace(args.workspace)
 
-    # pts.run_test_case("RFCOMM", "TC_RFC_BV_19_C")
-
     project_count = pts.get_project_count()
     print("Project count:", project_count)
 

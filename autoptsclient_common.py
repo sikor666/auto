@@ -210,7 +210,7 @@ def get_result_color(status):
     elif status == "INCONC":
         return "yellow"
     else:
-        return "white"
+        return "magenta"
 
 
 class TestCaseRunStats(object):
