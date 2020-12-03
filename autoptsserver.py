@@ -20,8 +20,8 @@ class PyPTSWithXmlRpcCallback(ptscontrol.PyPTS):
 
         log("%s", self.__init__.__name__)
 
-        self.mqtt_client = mqtt.Client('bluetoothautopts')
-        self.mqtt_client.connect('127.0.0.1')
+        self.mqtt_client = mqtt.Client('autoptsserver')
+        self.mqtt_client.connect(MQTT_BROKER_IP)
         self.mqtt_client.loop_start() # start loop to process received messages
         self.mqtt_client.subscribe("test/user")
 

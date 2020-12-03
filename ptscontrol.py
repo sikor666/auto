@@ -17,6 +17,7 @@ import pythoncom
 import ptsprojects.ptstypes as ptstypes
 import ctypes
 import json
+import paho.mqtt.client as mqtt
 
 log = logging.debug
 
@@ -116,9 +117,9 @@ class PTSSender(win32com.server.connect.ConnectableServer):
         # parse message:
         command = json.loads(message)
         # the result is a Python dictionary:
-        status = command["parameters"]["status"]
-        log("MQTT response status: %s" % status)
-        self._mqtt_response = status
+        result = command["parameters"]["result"]
+        log("MQTT response result: %s" % result)
+        self._mqtt_response = result
 
     def OnImplicitSend(self, project_name, wid, test_case, description, style):
         """Implements:
@@ -133,7 +134,6 @@ class PTSSender(win32com.server.connect.ConnectableServer):
         """
         logger = logging.getLogger(self.__class__.__name__)
         log = logger.info
-        timer = 0
 
         # Remove whitespaces from project and test case name
         project_name = project_name.replace(" ", "")
@@ -169,14 +169,16 @@ class PTSSender(win32com.server.connect.ConnectableServer):
         self._mqtt_response = None
         self._mqtt_client.publish('user/test', message)
 
+        timer = 0
+
         try:
             log("Wait for MQTT response")
 
             while not self._mqtt_response:
                 # XXX: Ask for response every second
                 timer = timer + 1
-                # XXX: Timeout 90 seconds
-                if timer > 90:
+                # XXX: Timeout MQTT_TIMEOUT seconds
+                if timer > MQTT_TIMEOUT:
                     self._mqtt_response = "Cancel"
                     break
 
@@ -399,8 +401,7 @@ class PyPTS:
             self._pts_projects[project_name] = {}
 
             for j in range(0, self._pts.GetTestCaseCount(project_name)):
-                test_case_name = self._pts.GetTestCaseName(project_name,
-                                                           j)
+                test_case_name = self._pts.GetTestCaseName(project_name, j)
                 self._pts_projects[project_name][test_case_name] = j
 
     def get_project_list(self):
@@ -408,10 +409,25 @@ class PyPTS:
 
         return tuple(self._pts_projects.keys())
 
+    def get_project_count(self):
+        """Returns number of projects that are available in the current workspace"""
+
+        return self._pts.GetProjectCount()
+
+    def get_project_name(self, project_index):
+        """Returns name of a selected project in the current workspace"""
+
+        return self._pts.GetProjectName(project_index)
+
     def get_project_version(self, project_name):
-        """Returns project version"""
+        """Returns version of a named project (test suite)"""
 
         return self._pts.GetProjectVersion(project_name)
+
+    def get_test_case_count(self, project_name):
+        """Returns the number of test cases that are available in the specified project"""
+
+        return self._pts.GetTestCaseCount(project_name)
 
     def get_test_case_list(self, project_name):
         """Returns list of active test cases of the specified project"""
@@ -424,12 +440,20 @@ class PyPTS:
 
         return tuple(test_case_list)
 
-    def get_test_case_description(self, project_name, test_case_name):
-        """Returns description of the specified test case"""
+    def get_test_case_name(self, project_name, test_case_index):
+        """Returns name of a selected test case in a given project"""
 
-        test_case_index = self._pts_projects[project_name][test_case_name]
+        return self._pts.GetTestCaseName(project_name, test_case_index)
+
+    def get_test_case_description(self, project_name, test_case_index):
+        """Returns description of a selected test case in a given project"""
 
         return self._pts.GetTestCaseDescription(project_name, test_case_index)
+
+    def is_active_test_case(self, project_name, test_case_name):
+        """Returns TRUE if the selected test case is active (enabled) in the specified project"""
+
+        return self._pts.IsActiveTestCase(project_name, test_case_name)
 
     def run_test_case(self, workspace_path, pts_timeout, project_name, test_case_name):
         """Executes the specified Test Case.
@@ -645,7 +669,7 @@ def main():
                         filemode='w',
                         level=logging.DEBUG)
 
-    pts = PyPTS()
+    pts = PyPTS(mqtt.Client('ptscontrol'))
 
     pts.open_workspace(args.workspace)
 
@@ -667,8 +691,8 @@ def main():
             print("Test case name:", test_case_name)
             print("Test case description:", pts.get_test_case_description(
                 project_name, test_case_index))
-            # print("Is active test case:", pts.is_active_test_case(
-            #     project_name, test_case_name))
+            print("Is active test case:", pts.is_active_test_case(
+                project_name, test_case_name))
 
     print("\n\n\n\nTSS file info:")
 
@@ -689,7 +713,7 @@ def main():
     pts.enable_maximum_logging(True)
     pts.enable_maximum_logging(False)
 
-    pts.set_call_timeout(PTS_TIMEOUT)
+    pts.set_call_timeout(600000)
     pts.set_call_timeout(0)
 
     pts.save_test_history_log(True)
