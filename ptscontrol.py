@@ -152,7 +152,7 @@ class PTSSender(win32com.server.connect.ConnectableServer):
             "command": "ImplicitSend",
             "parameters": {
                 "projectName": project_name,
-                "id": wid,
+                "wid": wid,
                 "testCase": test_case,
                 "description": description,
                 "style": style,
