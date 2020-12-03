@@ -7,7 +7,7 @@ import xmlrpc.server
 import winutils
 import ptscontrol
 import paho.mqtt.client as mqtt
-from config import SERVER_PORT
+from config import SERVER_PORT, MQTT_BROKER_IP
 
 log = logging.debug
 

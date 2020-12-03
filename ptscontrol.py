@@ -18,6 +18,7 @@ import ptsprojects.ptstypes as ptstypes
 import ctypes
 import json
 import paho.mqtt.client as mqtt
+from config import MQTT_TIMEOUT
 
 log = logging.debug
 
