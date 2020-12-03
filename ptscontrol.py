@@ -273,12 +273,13 @@ class PyPTS:
         """Recovers PTS from errors occured during RunTestCase call.
 
         The errors include timeout set by SetPTSCallTimeout. The only way to
-        correctly recover is to restore PTS settings.
+        correctly recover is to restart PTS and restore its settings.
 
         """
 
         log("%s timeout=%d %s", self.recover_pts.__name__, pts_timeout, workspace_path)
 
+        self.restart_pts()
         self.open_workspace(workspace_path)
         self.set_call_timeout(pts_timeout)
 
@@ -450,7 +451,6 @@ class PyPTS:
 
         except pythoncom.com_error as e:
             error_code = parse_ptscontrol_error(e)
-            self.stop_test_case(project_name, test_case_name)
             self.recover_pts(workspace_path, pts_timeout)
 
         log("Done %s %s %s out: %s", self.run_test_case.__name__,
