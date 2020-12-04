@@ -94,7 +94,7 @@ class PTSSender(win32com.server.connect.ConnectableServer):
     _reg_progid_ = "autopts.PTSSender"
     _public_methods_ = ['OnImplicitSend'] + win32com.server.connect.ConnectableServer._public_methods_
 
-    def __init__(self, mqtt_client):
+    def __init__(self, mqtt_client, bd_addr):
         """"Constructor"""
         super(PTSSender, self).__init__()
 
@@ -102,6 +102,7 @@ class PTSSender(win32com.server.connect.ConnectableServer):
         self._mqtt_response = None
         self._mqtt_client = mqtt_client
         self._mqtt_client.on_message = self.on_implicit_send_response
+        self._bd_addr = bd_addr
 
     def set_callback(self, callback):
         """Sets the callback"""
@@ -152,6 +153,7 @@ class PTSSender(win32com.server.connect.ConnectableServer):
         command = {
             "command": "ImplicitSend",
             "parameters": {
+                "address": self._bd_addr,
                 "projectName": project_name,
                 "wid": wid,
                 "testCase": test_case,
@@ -331,12 +333,12 @@ class PyPTS:
 
         log("Started new PTS daemon with pid: %d" % self._pts_proc.ProcessId)
 
-        self._pts_logger = PTSLogger()
-        self._pts_sender = PTSSender(self._mqtt_client)
-
         # cached frequently used PTS attributes: due to optimisation reasons it
         # is avoided to contact PTS. These attributes should not change anyway.
         self.__bd_addr = None
+
+        self._pts_logger = PTSLogger()
+        self._pts_sender = PTSSender(self._mqtt_client, self.bd_addr())
 
         self._com_logger = win32com.client.dynamic.Dispatch(
             win32com.server.util.wrap(self._pts_logger))
